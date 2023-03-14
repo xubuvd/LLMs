@@ -12,7 +12,8 @@ GLM-130B | https://github.com/THUDM/GLM-130B/ | 1300亿参数的中/英文大模
  [Uploading chatgpt中指令与提示学习-张家俊.pdf…]()
 
 
-# ChatGPT papers
+# ChatGPT相关资料（欢迎下载，顺便留个宝贵的小星星(Star)哦）
 1. LLM涌现能力-张俊林.pdf<br>
 2. 对话式大型语言模型-邱锡鹏.pdf <br>
 3. 探索大语言模型的垂直化训练技术与应用-陈运文.pdf<br>
+4. 哈尔滨工业大学：ChatGPT调研报告.pdf<br>
