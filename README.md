@@ -5,7 +5,7 @@
  --------| :-----------:  | :-----------:|
  LLaMA |  https://github.com/facebookresearch/llama | 
  OpenChatKit|https://github.com/togethercomputer/OpenChatKit | 200亿参数，48层，单机八卡
- Open-Assistant | https://github.com/LAION-AI/Open-Assistant |Open Assistant 全流程训练细节（GPT3+RL）,https://zhuanlan.zhihu.com/p/609003237
+ Open-Assistant | https://github.com/LAION-AI/Open-Assistant |Open Assistant 全流程训练细节（GPT3+RL）,https://zhuanlan.zhihu.com/p/609003237，12B或者LLAMA-7B两个版本。
  ChatGLM-6B | https://github.com/THUDM/ChatGLM-6B | ChatGLM-6B 是一个开源的、支持中英双语的对话语言模型，基于 General Language Model (GLM) 架构，具有 62 亿参数。可以作为很好的基础模型，在此之上做二次研发，在特定垂直领域。没有放出源代码，只有训练好的模型。
 GLM-130B | https://github.com/THUDM/GLM-130B/ | 1300亿参数的中/英文大模型，没有放出源代码，只有训练好的模型
  Alpaca 7B | https://crfm.stanford.edu/2023/03/13/alpaca.html |  A Strong Open-Source Instruction-Following Model，a model fine-tuned from the LLaMA 7B model on 52K instruction-following demonstrations. 
