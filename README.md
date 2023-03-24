@@ -14,7 +14,27 @@ GLM-130B | https://github.com/THUDM/GLM-130B/ | 1300亿参数的中/英文大模
  Claude | 用户可以通过邮箱等信息注册申请试用, 产品地址：https://www.anthropic.com/product, 申请地址：https://www.anthropic.com/earlyaccess, API说明: https://console.anthropic.com/docs/api |两个版本的 Claude：Claude 和 Claude Instant。 Claude 是最先进的高性能模型，而 Claude Instant 是更轻、更便宜、更快的选择。
  LLama/ChatLLama|https://github.com/nebuly-ai/nebullvm/tree/main/apps/accelerate/chatllama | 中文支持不好，有全套的SFT，RLHF训练过程
 chatglm-6B_finetuning | https://github.com/ssbuild/chatglm_finetuning | chatGLM-6B的微调版本，不够全
- 
+ChatGLM-Tuning| https://github.com/mymusise/ChatGLM-Tuning| ChatGLM-6B的又一个微调版本
+
+# chatglm-6B_finetuning的源代码解析
+
+模型，一层transformer_block，总共 28 层:<br>
+ModuleList(<br>
+  (0): GLMBlock(<br>
+    (input_layernorm): LayerNorm((4096,), eps=1e-05, elementwise_affine=True)<br>
+    (attention): SelfAttention(<br>
+      (rotary_emb): RotaryEmbedding()<br>
+      (query_key_value): Linear(in_features=4096, out_features=12288, bias=True)<br>
+      (dense): Linear(in_features=4096, out_features=4096, bias=True)<br>
+    )<br>
+    (post_attention_layernorm): LayerNorm((4096,), eps=1e-05, elementwise_affine=True)<br>
+    (mlp): GLU(<br>
+      (dense_h_to_4h): Linear(in_features=4096, out_features=16384, bias=True)<br>
+      (dense_4h_to_h): Linear(in_features=16384, out_features=4096, bias=True)<br>
+    )<br>
+  )<br>
+)<br>
+
 # 北京邮电大学 王小捷教授 ChatGPT 讲座分享
 
 https://www.bilibili.com/video/BV1G24y187yx/?buvid=ZB476BB0B8710E3C4F548C7C2778AA1427C6&is_story_h5=false&mid=AdBmq4Rn7y73B2EmgVj16A%3D%3D&p=1&plat_id=114&share_from=ugc&share_medium=iphone&share_plat=ios&share_session_id=5BB03E0F-3FED-48AF-A5FE-7F3E52513D99&share_source=WEIXIN&share_tag=s_i&timestamp=1677718075&unique_k=lk400UP&up_id=354740423<br>
