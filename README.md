@@ -16,6 +16,10 @@ GLM-130B | https://github.com/THUDM/GLM-130B/ | 1300亿参数的中/英文大模
 chatglm-6B_finetuning | https://github.com/ssbuild/chatglm_finetuning | chatGLM-6B的微调版本，不够全
 ChatGLM-Tuning| https://github.com/mymusise/ChatGLM-Tuning| ChatGLM-6B的又一个微调版本
 
+#Reward打分模型，用于强化学习RLHF阶段
+https://huggingface.co/OpenAssistant/reward-model-deberta-v3-large-v2<br>
+OpenAssistant和LLaMA模型使用的打分模型
+
 # chatglm-6B_finetuning的源代码解析
 
 模型，一层transformer_block，总共 28 层:<br>
