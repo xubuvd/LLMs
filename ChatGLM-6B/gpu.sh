@@ -28,6 +28,4 @@ watch --color -n2 gpustat -cpu # -i ${id}
 #cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c
 
 #把内存当硬盘
-# sudo mount tmpfs /home/pw/visdial-rl-master/data/visdial -t tmpfs -o size=64G
-
-
+# sudo mount tmpfs /home/xubuvd/visdial-rl/data/visdial -t tmpfs -o size=64G
