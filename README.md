@@ -58,3 +58,5 @@ https://www.bilibili.com/video/BV1G24y187yx/?buvid=ZB476BB0B8710E3C4F548C7C2778A
 3. 探索大语言模型的垂直化训练技术与应用-陈运文.pdf<br>
 4. 哈尔滨工业大学：ChatGPT调研报告.pdf<br>
 5. 探索大语言模型的垂直化训练技术与应用-陈运文.pdf<br>
+6. 中文模型和部分预训练数据集： https://github.com/lonePatient/awesome-pretrained-chinese-nlp-models#<br>
+
