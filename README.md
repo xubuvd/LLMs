@@ -15,6 +15,8 @@ GLM-130B | https://github.com/THUDM/GLM-130B/ | 1300亿参数的中/英文大模
  LLama/ChatLLama|https://github.com/nebuly-ai/nebullvm/tree/main/apps/accelerate/chatllama | 中文支持不好，有全套的SFT，RLHF训练过程
 chatglm-6B_finetuning | https://github.com/ssbuild/chatglm_finetuning | chatGLM-6B的微调版本，不够全
 ChatGLM-Tuning| https://github.com/mymusise/ChatGLM-Tuning| ChatGLM-6B的又一个微调版本
+中文语言模型骆驼 (Luotuo)|https://github.com/LC1332/Chinese-alpaca-lora |基于 LLaMA、Stanford Alpaca、Alpaca LoRA、Japanese-Alpaca-LoRA 等完成，单卡就能完成训练部署
+
 
 # Reward打分模型，用于强化学习RLHF阶段
 https://huggingface.co/OpenAssistant/reward-model-deberta-v3-large-v2<br>
