@@ -1,4 +1,6 @@
 # ChatGLM-6B 全套微调代码正在陆续上传中...，包含SFT，RLHF，Reward model，Prompt数据集收集等内容...
+# 2023年3月22号，154页微软GPT-4研究报告，欢迎阅读，可下载<br>
+
 # 国内大语言模型ChatGPT专区，欢迎交流
 # Open-source of LLMs 
 
@@ -61,4 +63,5 @@ https://www.bilibili.com/video/BV1G24y187yx/?buvid=ZB476BB0B8710E3C4F548C7C2778A
 4. 哈尔滨工业大学：ChatGPT调研报告.pdf<br>
 5. 探索大语言模型的垂直化训练技术与应用-陈运文.pdf<br>
 6. 中文模型和部分预训练数据集： https://github.com/lonePatient/awesome-pretrained-chinese-nlp-models#<br>
+7. 154页微软GPT-4研究报告 <br>
 
