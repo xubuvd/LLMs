@@ -21,6 +21,7 @@ ChatGLM-Tuning| https://github.com/mymusise/ChatGLM-Tuning| ChatGLM-6B的又一�
 中文语言模型骆驼 (Luotuo)|https://github.com/LC1332/Chinese-alpaca-lora |基于 LLaMA、Stanford Alpaca、Alpaca LoRA、Japanese-Alpaca-LoRA 等完成，单卡就能完成训练部署
 Alpaca-COT数据集 | https://github.com/PhoebusSi/Alpaca-CoT | 思维链（CoT）数据集，增强大语言模型的推理能力
 Bloom | https://huggingface.co/bigscience/bloom | 训练和代码比较全
+中文LLaMA&Alpaca大语言模型 | https://github.com/ymcui/Chinese-LLaMA-Alpaca | 在原版LLaMA的基础上扩充了中文词表并使用了中文数据进行二次预训练，进一步提升了中文基础语义理解能力。同时，在中文LLaMA的基础上，本项目使用了中文指令数据进行指令精调，显著提升了模型对指令的理解和执行能力。
 
 # Reward打分模型，用于强化学习RLHF阶段
 https://huggingface.co/OpenAssistant/reward-model-deberta-v3-large-v2<br>
