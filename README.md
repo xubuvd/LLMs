@@ -1,3 +1,4 @@
+# ChatGLM-6B 全套微调代码正在陆续上传中...，包含SFT，RLHF，Reward model，Prompt数据集收集等内容...
 # 国内大语言模型ChatGPT专区，欢迎交流
 # Open-source of LLMs 
 
