@@ -23,6 +23,7 @@
 13|Bloom | https://huggingface.co/bigscience/bloom | 训练和代码比较全
 14|中文LLaMA&Alpaca大语言模型 | https://github.com/ymcui/Chinese-LLaMA-Alpaca | 在原版LLaMA的基础上扩充了中文词表并使用了中文数据进行二次预训练，进一步提升了中文基础语义理解能力。同时，在中文LLaMA的基础上，本项目使用了中文指令数据进行指令精调，显著提升了模型对指令的理解和执行能力。
 15 |Colossal-AI/ColossalChat | https://github.com/hpcaitech/ColossalAI | 训练和代码比较全，包括 RLHF 训练代码；以 LLaMA 为基础预训练模型；开源了7B和13B两种模型；
+16 | Cerebras七个版本 ｜官网地址：https://www.cerebras.net/blog/cerebras-gpt-a-family-of-open-compute-efficient-large-language-models<br>GPT地址：https://www.cerebras.net/cerebras-gpt<br>Hugging Face地址：https://huggingface.co/cerebras｜七个参数版本：1.16亿、2.56亿、5.9亿、13亿、27亿、67亿和130亿参数
 
 # Reward打分模型，用于强化学习RLHF阶段
 https://huggingface.co/OpenAssistant/reward-model-deberta-v3-large-v2<br>
