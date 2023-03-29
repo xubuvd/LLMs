@@ -9,7 +9,7 @@
  No. |Projects | URL  | Comments
  --------| :-----------:  |:-----------:  | :-----------:|
  1|LLaMA |  https://github.com/facebookresearch/llama | 
- 2|OpenChatKit|https://github.com/togethercomputer/OpenChatKit | 基于GPT-NeoX-20B的微调版本，200亿参数，48层，单机八卡，每卡六层网络![OpenChatKit](https://user-images.githubusercontent.com/59753505/228441689-16a55551-0b0c-4c59-9c1f-0206ec9f4069.jpg)
+ 2|OpenChatKit|https://github.com/togethercomputer/OpenChatKit | 基于GPT-NeoX-20B的微调版本，200亿参数，48层，单机八卡，每卡六层网络，每一层的模型结构：![OpenChatKit](https://user-images.githubusercontent.com/59753505/228441689-16a55551-0b0c-4c59-9c1f-0206ec9f4069.jpg)
  3|Open-Assistant | https://github.com/LAION-AI/Open-Assistant |12B或者LLAMA-7B两个版本，Open Assistant 全流程训练细节（GPT3+RL）,https://zhuanlan.zhihu.com/p/609003237
  4|ChatGLM-6B | https://github.com/THUDM/ChatGLM-6B | ChatGLM-6B 是一个开源的、支持中英双语的对话语言模型，基于 General Language Model (GLM) 架构，具有 62 亿参数。可以作为很好的基础模型，在此之上做二次研发，在特定垂直领域。没有放出源代码，只有训练好的模型。
 5|GLM-130B | https://github.com/THUDM/GLM-130B/ | 1300亿参数的中/英文大模型，没有放出源代码，只有训练好的模型
