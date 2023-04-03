@@ -23,7 +23,7 @@
 13|Bloom | https://huggingface.co/bigscience/bloom | 训练和代码比较全
 14|中文LLaMA&Alpaca大语言模型 | https://github.com/ymcui/Chinese-LLaMA-Alpaca | 在原版LLaMA的基础上扩充了中文词表并使用了中文数据进行二次预训练，进一步提升了中文基础语义理解能力。同时，在中文LLaMA的基础上，本项目使用了中文指令数据进行指令精调，显著提升了模型对指令的理解和执行能力。
 15 |Colossal-AI/ColossalChat | https://github.com/hpcaitech/ColossalAI | 训练和代码比较全，包括 RLHF 训练代码；以 LLaMA 为基础预训练模型；开源了7B和13B两种模型；
-16 | Cerebras七个版本 | 官网地址：https://www.cerebras.net/blog/cerebras-gpt-a-family-of-open-compute-efficient-large-language-models<br>GPT地址:https://www.cerebras.net/cerebras-gpt<br>Hugging Face地址:https://huggingface.co/cerebras | 七个参数版本：1.16亿、2.56亿、5.9亿、13亿、27亿、67亿和130亿参数, 基于GPT的生成人工智能大型语言模型
+16 | Cerebras-GPT七个版本 | 官网地址：https://www.cerebras.net/blog/cerebras-gpt-a-family-of-open-compute-efficient-large-language-models<br>GPT地址:https://www.cerebras.net/cerebras-gpt<br>Hugging Face地址:https://huggingface.co/cerebras | 七个参数版本：1.16亿、2.56亿、5.9亿、13亿、27亿、67亿和130亿参数, 基于GPT的生成人工智能大型语言模型
 17 | BloombergGPT<br>(金融领域) | https://arxiv.org/abs/2303.17564 | BloombergGPT的训练数据库名为FINPILE，构建迄今为止最大的特定领域数据集, 由一系列英文金融信息组成，包括新闻、文件、新闻稿、网络爬取的金融文件以及提取到的社交媒体消息。训练专门用于金融领域的LLM，拥有500亿参数的语言模型。
 18 | dolly-v1-6b | https://github.com/databrickslabs/dolly | 1, fine-tuned on a ~52K instruction (Self-Instruct从 ChatGPT自动获取)；<br>2，deepspeed ZeRo 3加速训练;<br>3.可借鉴的：deepspeed ZeRo 3加速训练部分；
 19 | ChatDoctor | https://github.com/Kent0n-Li/ChatDoctor | 医疗领域对话模型，基于LLaMA-7B微调的大模型，经过四轮微调：<br>第一轮微调：羊驼的52K instruction-following 数据<br>;第二轮微调：患者和医生之间的5K对话数据集（ChatGPT GenMedGPT-5k和疾病数据库生成）；<br>第三轮微调：患者和医生之间的真实对话（HealthCareMagic-200k）；<br>第四轮微调：患者和医生之间的真实对话（icliniq-26k）.
