@@ -27,6 +27,7 @@
 17 | BloombergGPT<br>(金融领域) | https://arxiv.org/abs/2303.17564 | BloombergGPT的训练数据库名为FINPILE，构建迄今为止最大的特定领域数据集, 由一系列英文金融信息组成，包括新闻、文件、新闻稿、网络爬取的金融文件以及提取到的社交媒体消息。训练专门用于金融领域的LLM，拥有500亿参数的语言模型。
 18 | dolly-v1-6b | https://github.com/databrickslabs/dolly | 1, fine-tuned on a ~52K instruction (Self-Instruct从 ChatGPT自动获取)；<br>2，deepspeed ZeRo 3加速训练;<br>3.可借鉴的：deepspeed ZeRo 3加速训练部分；
 19 | ChatDoctor | https://github.com/Kent0n-Li/ChatDoctor | 医疗领域对话模型，基于LLaMA-7B微调的大模型，经过四轮微调：<br>第一轮微调：羊驼的52K instruction-following 数据<br>;第二轮微调：患者和医生之间的5K对话数据集（ChatGPT GenMedGPT-5k和疾病数据库生成）；<br>第三轮微调：患者和医生之间的真实对话（HealthCareMagic-200k）；<br>第四轮微调：患者和医生之间的真实对话（icliniq-26k）.
+20 | 开源中文对话大模型BELLE | https://github.com/LianjiaTech/BELLE | BELLE-7B（基于 BLOOMZ-7B1-mt 微调）
 
 
 
