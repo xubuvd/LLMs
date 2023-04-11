@@ -30,6 +30,7 @@
 21 |  InstructGLM | https://github.com/yanqiangmiffy/InstructGLM | 基于ChatGLM-6B+LoRA在指令数据集上进行微调；截止4月4号下午，InstructGLM存在以下缺点：多卡不支持，原作者在回答issues时也确认了；社区不活跃，两周不更新代码，坑反馈的太少（才11条），deepspeed没有；这是我用三块卡跑，卡负载不均衡：![image](https://user-images.githubusercontent.com/59753505/229748872-df8f3909-f8e5-454c-8378-56766f8aa1a2.png)
 22 | Cerebras-GPT  | https://huggingface.co/cerebras/Cerebras-GPT-13B | 参数量级130亿，大小比肩最近Meta开放的LLaMA-13B，数据集、模型权重和计算优化训练，全部开源。可商用！
 23 | Baize<br>(加利福尼亚大学, 基于 LLaMA 的微调)|https://github.com/project-baize/baize-chatbot | 数据集生成: 让 ChatGPT 与自己进行对话，模拟用户和AI机器人的回复」。这个生成的语料数据集是在多轮对话的背景下训练和评估聊天模型的宝贵资源。此外，通过指定种子数据集，可以从特定领域进行采样，并微调聊天模型以专门针对特定领域，例如医疗保健或金融。<br>Parameter-efficient tuning， 输入序列的最大长度设置为512，LoRA中的秩k设置为8，使用8位整数格式 (int8) ，Adam 优化器」更新LoRA 参数，batch size为64，learning rate为2e-4、1e-4和 5e-5，可训练的LoRA参数在 NVIDIA A100-80GB GPU 上微调了1个 epoch。
+24 | Open-Llama |https://github.com/s-JoL/Open-Llama | Open-Llama是一个开源项目，提供了一整套用于构建大型语言模型的训练流程，从数据集准备到分词、预训练、指令调优，以及强化学习技术 RLHF。采用FastChat项目相同方法测评Open-Llama的效果和GPT3.5的效果对比，经过测试在中文问题上可以达到GPT3.5 84%的水平。
 
 
 
