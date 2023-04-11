@@ -46,6 +46,7 @@ OpenAssistant和LLaMA模型使用的打分模型
 2, 从人工标注的选择200个作为种子，调用ChatGPT获取新的prompt数据，筛选一批；<br>
 3, prompt总量在50K量级，可以满足RLHF阶段的微调了。<br>
 
+
 # chatglm-6B_finetuning的源代码解析
 
 模型，一层transformer_block，总共 28 层:<br>
