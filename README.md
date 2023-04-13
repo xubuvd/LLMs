@@ -39,6 +39,7 @@
 3, 52191条英文指令数据， instinwild_en.json<br>
 4, 10021+10444条羊驼指令数据， alpaca-zh-data-part-00.json和alpaca-zh-data-part-01.json<br>
 5, 543314条中文指令数据，belle.json<br>
+6，太多了，不写了，见 instruction_data/<br>
 
 # 可下载的开源数据集
 1，悟道 200G文本，下载链接：https://data.baai.ac.cn/details/WuDaoCorporaText, 数据格式<br>
