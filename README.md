@@ -1,6 +1,7 @@
 # ChatGLM-6B 全套微调代码，大规模数据上进行并行测试，发现许多bug，单机多卡负载不均衡，有些卡爆掉，修改代码bug，调出最佳效果后，再上传，请等待...
 
-# 国内大语言模型ChatGPT专区，欢迎交流
+# 国内大语言模型ChatGPT专区，欢迎交流邮箱：xubuvd@163.com
+
 # Open-source of LLMs 
 
  If you like the project, please show your support by leaving a star ⭐.
