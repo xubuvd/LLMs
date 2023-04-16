@@ -1,4 +1,12 @@
-# ChatGLM-6B 全套微调代码，大规模数据上进行并行测试，发现许多bug，单机多卡负载不均衡，有些卡爆掉，修改代码bug，调出最佳效果后，再上传，请等待...
+# 决定从0到1预训练大语言模型，放弃在别的预训练模型基础上直接微调的方式
+预训练框架：选择 metaseq，github地址：https://github.com/facebookresearch/metaseq<br>
+SFT和RLHF框架： 选择 DeepSpeed Chat框架，github地址：https://github.com/microsoft/DeepSpeed/tree/master/blogs/deepspeed-chat；
+模型结构： 选择 LLaMA-13B和LLaMA-65B两种模型结构；<br>
+<br>
+后续跟进相关进展，有问题欢迎交流 xubuvd@163.com<br>
+
+# ChatGLM-6B 全套微调代码，经过两周的一番折腾，决定放弃ChatGLM-6B的指令微调
+经验教训：需要全套的SFT，RLHF代码，如果在某个人开源代码上增加这个代码，bug较多，训练不稳定等问题较多，尤其RLHF强化学习是一种精细的活，能稳定训练的坑太多了，花费的时间较多，还不见得有效果。<br>
 
 # 国内大语言模型ChatGPT专区，欢迎交流邮箱：xubuvd@163.com
 
