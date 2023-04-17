@@ -126,5 +126,3 @@ https://www.bilibili.com/video/BV1G24y187yx/?buvid=ZB476BB0B8710E3C4F548C7C2778A
 7. 154页微软GPT-4研究报告 <br>
 
 # 致谢
-
-在https://github.com/ssbuild/chatglm_finetuning 的基础上增加强化学习模块、Reward模型和Prompt指令数据收集模块，在此感谢chatglm_finetuning 的开发人员。<br>
