@@ -50,6 +50,7 @@ SFT和RLHF框架： 选择 DeepSpeed Chat框架，github地址：https://github.
 25  | DeepSpeed-Chat | https://github.com/microsoft/DeepSpeed/tree/master/blogs/deepspeed-chat | 微调框架：包括指令微调（SFT），Reward model 和强化学习对齐意图（RLHF）
 26 | fairseq | https://github.com/facebookresearch/fairseq | FaceBook开源的大语言模型预训练框架
 27 | metaseq | https://github.com/facebookresearch/metaseq | FaceBook开源的大语言模型预训练模型框架，基于fairseq的新版本
+28 | MiniGPT-4 | https://github.com/Vision-CAIR/MiniGPT-4 | 多模态大模型，基于 BLIP-2 和 Vicuna（LLaMA-7B基座）, 阿卜杜拉国王科技大学
 
 # 可下载的中英文指令数据集，仍需要清洗，下载见目录instruction_data/
 1，身份识别指令数据，需要自己修改细节内容 developer_instruction.json<br>
