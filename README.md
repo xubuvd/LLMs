@@ -1,5 +1,5 @@
 # 决定从0到1预训练大语言模型，放弃在别的预训练模型基础上直接微调的方式
-预训练框架：选择 metaseq，github地址：https://github.com/facebookresearch/metaseq<br>
+预训练框架：选择 ColossalAI, (放弃metaseq)，github地址：https://github.com/facebookresearch/metaseq<br>
 SFT和RLHF框架： 选择 DeepSpeed Chat框架，github地址：https://github.com/microsoft/DeepSpeed/tree/master/blogs/deepspeed-chat；
 模型结构： 选择 LLaMA-13B和LLaMA-65B两种模型结构；<br>
 <br>
