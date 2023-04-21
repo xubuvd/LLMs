@@ -58,7 +58,7 @@ SFT和RLHF框架： 选择 DeepSpeed Chat框架，github地址：https://github.
 ![Screen Shot 2023-04-21 at 10 32 14 AM](https://user-images.githubusercontent.com/59753505/233526814-3331b468-37d0-44dc-8484-d78da549466a.png)<br>
 2, ZeRO 2和3的性能对比<br>
 
-Model    |   ZeRO        | GPU数量	       | Bs	          | Seq len	    | Gpu mem	    | Gpu Usage	  | Iter	       |  Tflops	 |   TGS
+Model    |   ZeRO        | GPU数量	       | Bs	          | Seq len	    | Gpu mem	    | Gpu Usage	  | Iter	       |  Tflops	 |   TGS<br>(tokens per gpu per second)
 --------| :-----------:  |:-----------:  | :-----------:|:-----------:|:-----------:|:-----------:|:-----------:|:-----------:|:-----------:|  
 LLaMA-7B | zero2	        |  2            | 50	          | 2048	       |  90%	       |    60%	     |   25s	      |      250	 |   4096
 LLaMA-7B |zero3	         |  2            | 76	          | 2048	       |  97%	       |    80%	     |   30s	      |      300	 |   5188
