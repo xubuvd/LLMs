@@ -52,6 +52,21 @@ SFT和RLHF框架： 选择 DeepSpeed Chat框架，github地址：https://github.
 27 | metaseq | https://github.com/facebookresearch/metaseq | FaceBook开源的大语言模型预训练模型框架，基于fairseq的新版本
 28 | MiniGPT-4 | https://github.com/Vision-CAIR/MiniGPT-4 | 多模态大模型，基于 BLIP-2 和 Vicuna（LLaMA-7B基座）, 阿卜杜拉国王科技大学
 
+
+# ColossalAI 的性能测试
+1， ZeRO 2的性能，tflops 约为251<br>
+![Screen Shot 2023-04-21 at 10 32 14 AM](https://user-images.githubusercontent.com/59753505/233526814-3331b468-37d0-44dc-8484-d78da549466a.png)<br>
+2, ZeRO 2和3的性能对比<br>
+
+Model    |   ZeRO        | GPU数量	       | Bs	          | Seq len	    | Gpu mem	    | Gpu Usage	  | Iter	       |  Tflops	 |   TGS
+--------| :-----------:  |:-----------:  | :-----------:|:-----------:|:-----------:|:-----------:|:-----------:|:-----------:|:-----------:|  
+LLaMA-7B | zero2	        |  2            | 50	          | 2048	       |  90%	       |    60%	     |   25s	      |      250	 |   4096
+LLaMA-7B |zero3	         |  2            | 76	          | 2048	       |  97%	       |    80%	     |   30s	      |      300	 |   5188
+
+![img_v2_ef608a22-cae9-41a1-b725-0946e695e92g](https://user-images.githubusercontent.com/59753505/233527058-cb9a3bc8-23f3-456f-8bd8-6a8a773ae2f6.png)
+
+
+
 # 可下载的中英文指令数据集，仍需要清洗，下载见目录instruction_data/
 1，身份识别指令数据，需要自己修改细节内容 developer_instruction.json<br>
 2, 51504条中文指令数据，instinwild_ch.json<br>
