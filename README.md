@@ -63,7 +63,7 @@ Model    |   ZeRO        | GPU数量	       | Bs	          | Seq len	    | Gpu m
 LLaMA-7B | zero2	        |  2            | 50	          | 2048	       |  90%	       |    60%	     |   25s	      |      250	 |   4096
 LLaMA-7B |zero3	         |  2            | 76	          | 2048	       |  97%	       |    80%	     |   30s	      |      300	 |   5188
 
-3, 黄色曲线是ZeRO3，蓝色曲线是ZeRO2<br>
+3, 黄色曲线是ZeRO3，绿色曲线是ZeRO2<br>
 ![img_v2_ef608a22-cae9-41a1-b725-0946e695e92g](https://user-images.githubusercontent.com/59753505/233527058-cb9a3bc8-23f3-456f-8bd8-6a8a773ae2f6.png)
 
 
