@@ -6,6 +6,9 @@ SFT和RLHF框架： 选择 DeepSpeed Chat框架，github地址：https://github.
 后续跟进相关进展，有问题欢迎交流 xubuvd@163.com<br>
 <br>
 
+# OpenAI购买平台
+https://eylink.cn/<br>
+
 # ChatGLM-6B 全套微调代码，经过两周的一番折腾，决定放弃ChatGLM-6B的指令微调
 经验教训：需要全套的SFT，RLHF代码，如果在某个人开源代码上增加这个代码，bug较多，训练不稳定等问题较多，尤其RLHF强化学习是一种精细的活，能稳定训练的坑太多了，花费的时间较多，还不见得有效果。<br>
 
