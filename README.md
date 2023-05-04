@@ -1,4 +1,4 @@
-# 决定从0到1预训练大语言模型，放弃在别的预训练模型基础上直接微调的方式
+# 从0到1预训练大语言模型
 预训练框架：选择 ColossalAI, (放弃metaseq)，github地址：https://github.com/facebookresearch/metaseq<br>
 SFT和RLHF框架： 选择 DeepSpeed Chat框架，github地址：https://github.com/microsoft/DeepSpeed/tree/master/blogs/deepspeed-chat；
 模型结构： 选择 LLaMA-13B和LLaMA-65B两种模型结构；<br>
@@ -9,8 +9,9 @@ SFT和RLHF框架： 选择 DeepSpeed Chat框架，github地址：https://github.
 # OpenAI购买平台
 https://eylink.cn/<br>
 
-# ChatGLM-6B 全套微调代码，经过两周的一番折腾，决定放弃ChatGLM-6B的指令微调
-经验教训：需要全套的SFT，RLHF代码，如果在某个人开源代码上增加这个代码，bug较多，训练不稳定等问题较多，尤其RLHF强化学习是一种精细的活，能稳定训练的坑太多了，花费的时间较多，还不见得有效果。<br>
+# ChatGLM-6B 全套微调代码，经过两周对ChatGLM-6B的指令微调，两条经验如下：<br>
+1. glm-6B是经过SFT和RLHF后的版本，再次微调不够友好<br>
+2. 需要在一个干净的纯基座模型上进行微调（SFT），使用高质量的业务指令数据；RLHF，是一个难题，需要一个高质量的reward model，目前正确的rlhf pipeline比较稀少，训练出来好的效果也是一个挑战。<br>
 
 # 国内大语言模型ChatGPT专区，欢迎交流邮箱：xubuvd@163.com
 
