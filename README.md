@@ -147,5 +147,6 @@ https://www.bilibili.com/video/BV1G24y187yx/?buvid=ZB476BB0B8710E3C4F548C7C2778A
 5. 探索大语言模型的垂直化训练技术与应用-陈运文.pdf<br>
 6. 中文模型和部分预训练数据集： https://github.com/lonePatient/awesome-pretrained-chinese-nlp-models#<br>
 7. 154页微软GPT-4研究报告 <br>
+8. 陆奇《新范式 新时代 新机会》北京场.pdf<br>
 
 # 致谢
