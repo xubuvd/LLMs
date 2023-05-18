@@ -10,7 +10,7 @@ SFT和RLHF框架： 选择 DeepSpeed Chat框架，github地址：https://github.
 https://eylink.cn/<br>
 
 # 人类反馈的强化学习RLHF（Reinforcement Learning from Human Feedback）
-RLHF是一种利用强化学习方法从人类反馈中学习的技术，使大语言模型与人类偏好保持对齐并遵循人类意图，有三个较好的开源pipeline实现，Beaver（河狸），开源地址：https://github.com/PKU-Alignment/safe-rlhf。<br>
+RLHF是一种利用强化学习方法从人类反馈中学习的技术，使大语言模型与人类偏好保持对齐并遵循人类意图，有三个较好的开源pipeline实现，Beaver（河狸），开源地址：https://github.com/PKU-Alignment/safe-rlhf<br>
 DeepSpeedChat和trlX。Beaver项目开源内容包括：(a)数据集与模型：PKU-SafeRLHF<br>
 1.开源迄今为止最大的多轮 RLHF 数据集，规模达到 100 万条。<br>
 2.开源经 Safe-RLHF 对齐训练得到的 7B 参数的语言模型——Beaver，并支持在线部署。<br>
