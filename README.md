@@ -9,6 +9,20 @@ SFT和RLHF框架： 选择 DeepSpeed Chat框架，github地址：https://github.
 # OpenAI购买平台
 https://eylink.cn/<br>
 
+# 人类反馈的强化学习RLHF（Reinforcement Learning from Human Feedback）
+RLHF是一种利用强化学习方法从人类反馈中学习的技术，使大语言模型与人类偏好保持对齐并遵循人类意图，有三个较好的开源pipeline实现，Beaver（河狸），开源地址：https://github.com/PKU-Alignment/safe-rlhf。<br>
+DeepSpeedChat和trlX。Beaver项目开源内容包括：(a)数据集与模型：PKU-SafeRLHF<br>
+1.开源迄今为止最大的多轮 RLHF 数据集，规模达到 100 万条。<br>
+2.开源经 Safe-RLHF 对齐训练得到的 7B 参数的语言模型——Beaver，并支持在线部署。<br>
+3.开源了预训练的Reward Model和Cost Model的模型和参数。<br>
+(b) 首个可复现的RLHF基准，PKU-Alignment/safe-rlhf支持以下功能：<br>
+1. 支持LLM 模型的 SFT（Supervised Fine-Tuning）、RLHF训练、Safe RLHF训练。支持目前主流的预训练模型如 LLaMA、OPT 等模型的训练。<br>
+2. 支持 Reward Model 和 Cost Model 训练。<br>
+3. 提供安全约束满足的多尺度验证方式，支持 BIG-bench、GPT-4 Evaluation 等。<br>
+4. 支持参数定制化的 RLHF 和数据集定制接口。<br>
+![rlhf_githubs](https://github.com/xubuvd/LLMs/assets/59753505/c3f76de4-64b5-4854-af31-2a78c27cb28c)
+
+
 # ChatGLM-6B 全套微调代码，经过两周对ChatGLM-6B的指令微调，两条经验如下：<br>
 1. glm-6B是经过SFT和RLHF后的版本，再次微调不够友好<br>
 2. 需要在一个干净的纯基座模型上进行微调（SFT），使用高质量的业务指令数据；RLHF，是一个难题，需要一个高质量的reward model，目前正确的rlhf pipeline比较稀少，训练出来好的效果也是一个挑战。<br>
