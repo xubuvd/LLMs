@@ -16,7 +16,7 @@ No.      |Bug             |     原做法    | 修改           | 注评
  3       | <endoftext>不作为一个特殊字符 | <endoftext>作为一个文本序列 | 使用<eos>特殊字符代替，不需要新加一个<endoftext> | 参考论文“A General Language Assistant as a Laboratory for Alignment”，用作特殊字符效果好一些。
  4  | subprocess.CalledProcessError: Command '['which', 'c++']' returned non-zero exit status 1. | g++ wasn't installed. | #apt-get install build-essential | g++环境问题
  5  | wandb.errors.UsageError: api_key not configured (no-tty). | |  #wandb login 根据提示获取api key注册一下即可 | wandb使用问题，退出后再进入要：$ wandb login --relogin
- 6 | Calling torch.distributed.barrier() <br>results in the program being killed |#df -lh | |Docker容器共享内存太小存满导致，<br>容器里跑训练会遇到，<br>Slurm集群里，面对裸机没有此类问题。
+ 6 | Calling torch.distributed.barrier() <br>results in the program being killed |#df -lh | #rm -f /dev/shm/nccl-*|Docker容器共享内存太小存满导致，<br>容器里跑训练会遇到，<br>Slurm集群里，面对裸机没有此类问题。
  7 |huggingface/tokenizers: The current process just got forked, after parallelism has already been used. | | | warning，暂不处理
  8 | 数据集索引大小的bug| | | 2982929829一个不可能出现的数字，<br>index缓存文件名字名字重复，加入子进程的<br>global rank, loacl rank命名，已解决。
  9 |wandb: ERROR Run initialization has timed out after 60.0 sec. | |两个可能原因：<br>1，某些node的网络没有打开导致的；<br>2，节点的网络中断；<br>上述两个原因都遇到过。 | 排查两个原因
