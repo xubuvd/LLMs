@@ -14,12 +14,13 @@ No.      |Bug             |     原做法    | 修改           | 注评
  3       | <endoftext>不作为一个特殊字符 | <endoftext>作为一个文本序列 | 使用<eos>特殊字符代替，不需要新加一个<endoftext> | 参考论文“A General Language Assistant as a Laboratory for Alignment”，用作特殊字符效果好一些。
  4  | subprocess.CalledProcessError: Command '['which', 'c++']' returned non-zero exit status 1. | g++ wasn't installed. | #apt-get install build-essential | g++环境问题
  5  | wandb.errors.UsageError: api_key not configured (no-tty). | |  #wandb login 根据提示获取api key注册一下即可 | wandb使用问题，退出后再进入要：$ wandb login --relogin
- 6 | | | | 
- 7 | | | | 
- 8 | | | | 
- 9 | | | | 
- 10 | | | | 
- 11 | | | | 
+ 6 |Calling torch.distributed.barrier() results in the program being killed | |#df -lh |grep shm<br>shm              64M     0   64M   0% /dev/shm
+#rm -f /dev/shm/nccl-* | Docker容器共享内存太小存满导致，容器里跑训练会遇到，Slurm集群里，面对裸机没有此类问题。
+ 7 |huggingface/tokenizers: The current process just got forked, after parallelism has already been used. | | | warning，暂不处理
+ 8 | 数据集索引大小的bug| | | 2982929829一个不可能出现的数字，index缓存文件名字名字重复，加入子进程的global rank, loacl rank命名，已解决。
+ 9 |wandb: ERROR Run initialization has timed out after 60.0 sec. | |两个可能原因：<br>1，某些node的网络没有打开导致的；<br>2，节点的网络中断；<br>上述两个原因都遇到过。 | 排查两个原因
+ 10 | OSError: [Errno 122] Disk quota exceeded| 模型文件checkpoint写到管理节点本地，仅保存了4个checkpoints，空间就🈵️了，pytorch_model_10.bin,pytorch_model_20.bin,pytorch_model_30.bin,pytorch_model_40.bin| 1. checkpoints先保存在/hpc_data/pangwei/ 【因为写权限问题，先保存该目录下】，速度变慢，10分钟加载模型文件；<br>2. 保留当前三个checkpoints；<br>3. 保存历史上最好的一个checkpoint，根据验证集上的perplexity指标。checkpoints分为三种，后缀分别为：norm_{steps}, bestppl_{steps}, final_{steps}。| 磁盘配额不够了，磁盘已满或超出了用户所能使用的配额上限
+ 11 |混合训，支持任意多个训练数据文件 | 支持一类数据集读取| 支持四类不同数据集，每一类可以任意多：<br>--train_pt_data_path []<br>--eval_pt_data_path []<br>--train_sft_data_path []<br>--eval_sft_data_path []<br>预训练数据集，后缀：训练集pt_train.jsonl, 验证集 pt_eval.jsonl;<br>指令微调数据集，后缀：训练集 sft_train.jsonl, 验证集 sft_eval.jsonl。 | 支持混合训的数据集管理，便于不同数据集的配比
  12 | | | | 
  13 | | | | 
  14 | | | | 
