@@ -27,7 +27,7 @@ No.      |Bug             |     原做法    | 修改           | 注评
  14 | 缓存空间溢满<br>OSError: [Errno 28] <br>No space left on device:<br>'/tmp/data_files'| | 从/tmp/目录调整到/data/XXX/目录| 
  15 | Save checkpoints，<br>按照固定steps计算perplexity，<br>保存最优模型| 每个epoch结束后<br>才计算perplexity| 增加一个参数 args.eval_save_steps，<br>默认100| 
  16 | Save checkpoint 并行化| checkpoint<br>路径全局唯一，<br>如果在多个节点（gnode）上启动任务，<br>输出路径重合，<br>互相干扰输出结果| Save 路径上新增一个节点名字，<br>可以同时多机启动多个一样的任务。<br>路径例子：/hpc_data/XXX/<br>actor-models/chinese_llama_plus-gnode07-13b-gnode07-20230524-0356。| chinese_llama_plus-gnode07-13b-gnode07-20230524-0356：<br>模型名字-模型大小-节点名字-时间串
- 17 | | | | 
+ 17 |加入wandb | | | 训练参数可视化
  18 | | | | 
  19 | | | | 
  20 | | | | 
