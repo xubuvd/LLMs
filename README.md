@@ -1,7 +1,7 @@
 # 从0到1预训练大语言模型
 预训练框架：DeepSpeedChat (放弃metaseq，ColossalAI)，github地址：https://github.com/facebookresearch/metaseq<br>
 SFT和RLHF框架： 选择 DeepSpeed Chat框架，github地址：https://github.com/microsoft/DeepSpeed/tree/master/blogs/deepspeed-chat；
-模型结构： 选择 LLaMA-13B和LLaMA-65B两种模型结构；<br>
+模型结构： 选择 Moss-13B, GLM-10b-chinese, LLaMA-13B和LLaMA-65B两种模型结构；<br>
 <br>
 后续跟进相关进展，有问题欢迎交流 xubuvd@163.com<br>
 <br>
