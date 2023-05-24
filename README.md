@@ -21,11 +21,11 @@ No.      |Bug             |     原做法    | 修改           | 注评
  9 |wandb: ERROR Run initialization has timed out after 60.0 sec. | |两个可能原因：<br>1，某些node的网络没有打开导致的；<br>2，节点的网络中断；<br>上述两个原因都遇到过。 | 排查两个原因
  10 | OSError: [Errno 122] Disk quota exceeded| 模型文件checkpoint写到管理节点本地，<br>仅保存了4个checkpoints，空间就🈵️了，<br>pytorch_model_10.bin,<br>pytorch_model_20.bin,<br>pytorch_model_30.bin,<br>pytorch_model_40.bin| 1. checkpoints先保存在/hpc_data/pangwei/ 【因为写权限问题，先保存该目录下】，速度变慢，10分钟加载模型文件；<br>2. 保留当前三个checkpoints；<br>3. 保存历史上最好的一个checkpoint，根据验证集上的perplexity指标。checkpoints分为三种，后缀分别为：norm_{steps}, bestppl_{steps}, final_{steps}。| 磁盘配额不够了，磁盘已满或超出了用户所能使用的配额上限
  11 |混合训，支持任意多个训练数据文件 | 支持一类数据集读取| 支持四类不同数据集，每一类可以任意多：<br>--train_pt_data_path []<br>--eval_pt_data_path []<br>--train_sft_data_path []<br>--eval_sft_data_path []<br>预训练数据集，后缀：训练集pt_train.jsonl, 验证集 pt_eval.jsonl;<br>指令微调数据集，后缀：训练集 sft_train.jsonl, 验证集 sft_eval.jsonl。 | 支持混合训的数据集管理，便于不同数据集的配比
- 12 | | | | 
- 13 | | | | 
- 14 | | | | 
- 15 | | | | 
- 16 | | | | 
+ 12 | resume问题| | | 加载当前最新的一个checkpoint；
+ 13 | (ReqNodeNotAvail, Un)<br>scancel一个任务<br>又重新启动会<br>遇到此类错误| | slurm系统scancel任务后挂掉| 重启slurm吧
+ 14 | 缓存空间溢满<br>OSError: [Errno 28] <br>No space left on device:<br>'/tmp/data_files'| | 从/tmp/目录调整到/data/XXX/目录| 
+ 15 | Save checkpoints，<br>按照固定steps计算perplexity，<br>保存最优模型| 每个epoch结束后<br>才计算perplexity| 增加一个参数 args.eval_save_steps，<br>默认100| 
+ 16 | Save checkpoint 并行化| checkpoint路径全局唯一，<br>如果在多个节点（gnode）上启动任务，<br>输出路径重合，<br>互相干扰输出结果| Save 路径上新增一个节点名字，<br>可以同时多机启动多个一样的任务。<br>路径例子：/hpc_data/XXX/<br>actor-models/chinese_llama_plus-gnode07-13b-gnode07-20230524-0356。| chinese_llama_plus-gnode07-13b-gnode07-20230524-0356：<br>模型名字-模型大小-节点名字-时间串
  17 | | | | 
  18 | | | | 
  19 | | | | 
