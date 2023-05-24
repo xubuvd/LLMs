@@ -10,7 +10,7 @@ SFT和RLHF框架： 选择 DeepSpeed Chat框架，github地址：https://github.
 No.      |Bug             |     原做法    | 修改           | 注评
  --------| :-----------:  |:-----------:  | :-----------:|:-----------:|
  1       | SFT Loss计算方式 | 所有tokens的预测损失（CE loss） |只计算模型respnse部分的预测损失 | 测试经验，计算所有token的loss，效果都不太好，只计算response的loss，其它部分mask掉
- 2       | 新增pre-train和SFT两种损失Loss计算  |  只有SFT loss计算一种 |增加pre-train预训练 | 支持SFT和Pre-train混合训练，同一个batch内部有两类数据
+ 2       | 新增pre-train和<br>SFT两种损失Loss计算  |  只有SFT loss计算一种 |增加pre-train预训练 | 支持SFT和Pre-train混合训练，同一个batch内部有两类数据
  3       | <endoftext>不作为一个特殊字符 | <endoftext>作为一个文本序列 | 使用<eos>特殊字符代替，不需要新加一个<endoftext> | 参考论文“A General Language Assistant as a Laboratory for Alignment”，用作特殊字符效果好一些。
  4  | subprocess.CalledProcessError: Command '['which', 'c++']' returned non-zero exit status 1. | g++ wasn't installed. | #apt-get install build-essential | g++环境问题
  5  | wandb.errors.UsageError: api_key not configured (no-tty). | |  #wandb login 根据提示获取api key注册一下即可 | wandb使用问题，退出后再进入要：$ wandb login --relogin
