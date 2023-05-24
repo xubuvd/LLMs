@@ -5,6 +5,8 @@ SFT和RLHF框架： 选择 DeepSpeed Chat框架，github地址：https://github.
 <br>
 后续跟进相关进展，有问题欢迎交流 xubuvd@163.com<br>
 <br>
+# 数据集构造，数据清洗方法
+慢慢加...
 
 # DeepSpeedChat 优化 for 预训练和指令微调
 No.      |Bug             |     原做法    | 修改           | 注评
