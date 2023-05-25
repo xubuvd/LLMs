@@ -31,7 +31,8 @@ No.      |Bug             |     原做法    | 修改           | 注评
  18 |加入TGS,TFlops | | | 卡吞吐率
  19 | 统计预训练和<br>指令微调数据集的<br>总tokens数量| | | data_util.py增加
  20 |自动记录<br>训练的超参数<br>Copy run_*.sh到<br>输出目录下 | |copy2(script, <br>f'{output_dir}/run.sh')| 模型的超参数与<br>模型checkpoint文件<br>保存在一起，<br>便于分析模型性能与<br>参数的关系
- 21 |缺少多机多卡支持| | |deepspeed-chat没有写这部分，增加进行中
+ 21 | RuntimeError: Too many open files. <br>Communication with the workers is no longer possible. <br>Please increase the limit using <br>ulimit -n in the shell or <br>change the sharing strategy by <br>calling torch.multiprocessing.set_sharing_strategy('file_system')<br> at the beginning of your code | | |快速文件存储系统的设置存在问题
+ 22 |缺少多机多卡支持| | |deepspeed-chat没有写这部分，增加进行中
  
 
 # OpenAI购买平台
