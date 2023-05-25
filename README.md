@@ -183,8 +183,8 @@ ModuleList(<br>
 https://www.bilibili.com/video/BV1G24y187yx/?buvid=ZB476BB0B8710E3C4F548C7C2778AA1427C6&is_story_h5=false&mid=AdBmq4Rn7y73B2EmgVj16A%3D%3D&p=1&plat_id=114&share_from=ugc&share_medium=iphone&share_plat=ios&share_session_id=5BB03E0F-3FED-48AF-A5FE-7F3E52513D99&share_source=WEIXIN&share_tag=s_i&timestamp=1677718075&unique_k=lk400UP&up_id=354740423<br>
 
 # 训练大语言模型中，一个查看GPU 卡的好用小工具
-# pip install nvitop<br>
-# nvitop<br>
+$ pip install nvitop<br>
+$ nvitop<br>
 效果见下图，显存使用率，GPU利用率，CPU利用率和内存使用率，一览无余：<br>
 ![WechatIMG73](https://github.com/xubuvd/LLMs/assets/59753505/a53899c2-e193-4ace-8efc-ac2ec5bc3e94)
 
