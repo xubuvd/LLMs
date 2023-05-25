@@ -30,7 +30,7 @@ No.      |Bug             |     原做法    | 修改           | 注评
  17 |加入wandb | | | 训练参数，资源和指标可视化
  18 |加入TGS,TFlops | | | 卡吞吐率
  19 | 统计预训练和<br>指令微调数据集的<br>总tokens数量| | | data_util.py增加
- 20 | | | | 
+ 20 |自动记录<br>训练的超参数<br>Copy run_*.sh到<br>输出目录下 | |copy2(script, <br>f'{output_dir}/run.sh')| 模型的超参数与<br>模型checkpoint文件<br>保存在一起，<br>便于分析模型性能与<br>参数的关系
  
 
 # OpenAI购买平台
