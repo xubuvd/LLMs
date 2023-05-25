@@ -33,7 +33,8 @@ No.      |Bug             |     原做法    | 修改           | 注评
  20 |自动记录<br>训练的超参数<br>Copy run_*.sh到<br>输出目录下 | |copy2(script, <br>f'{output_dir}/run.sh')| 模型的超参数与<br>模型checkpoint文件<br>保存在一起，<br>便于分析模型性能与<br>参数的关系
  21 | RuntimeError: Too many open files. <br>Communication with the workers is no longer possible. <br>Please increase the limit using <br>ulimit -n in the shell or <br>change the sharing strategy by <br>calling torch.multiprocessing.set_sharing_strategy('file_system')<br> at the beginning of your code | |torch.multiprocessing.<br>set_sharing_strategy<br>('file_system') |快速文件存储系统的设置存在问题
  22 |缺少多机多卡支持| | |deepspeed-chat没有写这部分，增加进行中
- 23 |torch.cuda.OutOfMemoryError:<br>CUDA out of memory.| 13B的模型训练，第一个epoch后，<br>进入到第二个epoch之前就出现OOM问题| |   
+ 23 |torch.cuda.OutOfMemoryError:<br>CUDA out of memory.| Chinese-LLaMA-13B的模型训练遇到OOM问题| | self-attention,<br>fp16->fp32->fp16<br>max_seq_length从2048调小到512
+ 24 |A100-PCIe主板接口网速瓶颈| |<img width="1393" alt="Screen Shot 2023-05-25 at 4 33 20 PM" src="https://github.com/xubuvd/LLMs/assets/59753505/92fa0fcd-19cd-461b-94a1-0eefa951e0fb"> | 训练正向进行和反向进行，GPU达到峰值，<br>多卡之间信息同步时，GPU利用率跌倒谷底。
  
 
 # OpenAI购买平台
