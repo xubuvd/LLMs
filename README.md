@@ -27,10 +27,11 @@ No.      |Bug             |     原做法    | 修改           | 注评
  14 | 缓存空间溢满<br>OSError: [Errno 28] <br>No space left on device:<br>'/tmp/data_files'| | 从/tmp/目录调整到/data/XXX/目录| 
  15 | Save checkpoints，<br>按照固定steps计算perplexity，<br>保存最优模型| 每个epoch结束后<br>才计算perplexity| 增加一个参数 args.eval_save_steps，<br>默认100| 
  16 | Save checkpoint 并行化| checkpoint<br>路径全局唯一，<br>如果在多个节点（gnode）上启动任务，<br>输出路径重合，<br>互相干扰输出结果| Save 路径上新增一个节点名字，<br>可以同时多机启动多个一样的任务。<br>路径例子：/hpc_data/XXX/<br>actor-models/chinese_llama_plus-gnode07-13b-gnode07-20230524-0356。| chinese_llama_plus-gnode07-13b-gnode07-20230524-0356：<br>模型名字-模型大小-节点名字-时间串
- 17 |加入wandb | | | 训练参数，资源和指标可视化
+ 17 |加入wandb | |主进程输出日志| 训练参数，资源和指标可视化
  18 |加入TGS,TFlops | | | 卡吞吐率
  19 | 统计预训练和<br>指令微调数据集的<br>总tokens数量| | | data_util.py增加
  20 |自动记录<br>训练的超参数<br>Copy run_*.sh到<br>输出目录下 | |copy2(script, <br>f'{output_dir}/run.sh')| 模型的超参数与<br>模型checkpoint文件<br>保存在一起，<br>便于分析模型性能与<br>参数的关系
+ 21 |缺少多机多卡支持| | |进行中
  
 
 # OpenAI购买平台
