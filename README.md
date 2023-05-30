@@ -98,6 +98,7 @@ DeepSpeedChat和trlX。Beaver项目开源内容包括：(a)数据集与模型：
 30 | 红睡衣(RedPajama)开源计划 | https://huggingface.co/datasets/togethercomputer/RedPajama-Data-1T<br>预处理仓库:https://github.com/togethercomputer/RedPajama-Data | 红睡衣开源计划总共包括三部分：<br>1. 高质量、大规模、高覆盖度的预训练数据集；<br>2. 在预训练数据集上训练出的基础模型；<br>3. 指令调优数据集和模型，比基本模型更安全、可靠。<br>Ontocord.AI，苏黎世联邦理工学院DS3Lab，斯坦福CRFM，斯坦福Hazy Research 和蒙特利尔学习算法研究所的开源计划，旨在生成可复现、完全开放、最先进的语言模型，即从零一直开源到ChatGPT！。
 31 | Panda<br>中文开源大语言模型 |  https://github.com/dandelionsllm/pandallm |基于Llama-7B、-13B、-33B和-65B进行了中文领域的持续预训练，在中文基准测试中表现优异，远超同等类型的中文语言模型，Panda的模型和训练所用中文数据集将以开源形式发布，任何人都可以免费使用和参与开发。
 32 | BELLE<br>（LLaMA，链家） | https://github.com/LianjiaTech/BELLE | BELLE-LLaMA-EXT-13B，在LLaMA-13B的基础上扩展中文词表，并在400万高质量的对话数据上进行训练。
+33 | Linly-Chinese-LLaMA   | https://github.com/CVI-SZU/Linly | LLaMA-7B/13B基础上，中文二次预训练，上下文长度2048
 
 
 # ColossalAI 的性能测试
@@ -179,6 +180,10 @@ ModuleList(<br>
     )<br>
   )<br>
 )<br>
+
+# 开源预训练代码
+TencentPretrain: Tencent Pre-training Framework<br>
+https://github.com/Tencent/TencentPretrain<br>
 
 # 北京邮电大学 王小捷教授 ChatGPT 讲座分享
 
