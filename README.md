@@ -35,7 +35,7 @@ No.      |Bug             |     原做法    | 修改           | 注评
  22 |缺少多机多卡支持| | |deepspeed-chat没有写这部分，增加进行中
  23 |torch.cuda.OutOfMemoryError:<br>CUDA out of memory.| Chinese-LLaMA-13B的模型训练遇到OOM问题| | 在epoch 循环的内部，进行了 evaluation()，<br>evaluation设置了model.eval()模式, <br>但是退出evaluation再次进入 epoch 循环时，<br>没有设置model.train()模式。
  24 |A100-PCIe主板接口网速瓶颈| |<img width="1393" alt="Screen Shot 2023-05-25 at 4 33 20 PM" src="https://github.com/xubuvd/LLMs/assets/59753505/92fa0fcd-19cd-461b-94a1-0eefa951e0fb"> | 训练正向进行和反向进行，<br>GPU达到峰值，<br>多卡之间信息同步时，<br>GPU利用率跌倒谷底。<br>NV-link的接口GPU平稳。
- 25 | Index cache<br>文件名字重合 | 下一个文件使用了<br>前一个文件的索引<br>d_path:f_identity_qa_cn_re.json, train_dataset_size:198991, eval_dataset:1009<br>d_path:f_multiturn_cn_69k.json, train_dataset_size:69318, eval_dataset:336<br>d_path:f_ver_qa_cn_28k.json, train_dataset_size:28140, eval_dataset:166 | 索引文件使用文件名字区别开 |  
+ 25 | Index cache<br>文件名字重合 | 下一个文件使用了<br>前一个文件的索引<br>d_path:f_identity_qa_cn_re.json, train_dataset_size:198991, eval_dataset:1009<br>d_path:f_multiturn_cn_69k.json, train_dataset_size:69318, eval_dataset:336<br>d_path:f_ver_qa_cn_28k.json, train_dataset_size:28140, eval_dataset:166 | 索引使用基座模型名字，<br>训练数据文件名字区别开 |  
  26 | 单条数据不补齐到<br>max_seq_len,<br>batch内部数据补齐到batch内最大长度 | batch内所有数据补齐到max_seq_len | | 提高计算效率，大多数长度相对很短
 
 # OpenAI购买平台
