@@ -38,6 +38,7 @@ No.      |Bug             |     原做法    | 修改           | 注评
  25 | Index cache<br>文件名字重合 | 下一个文件使用了<br>前一个文件的索引<br>d_path:f_identity_qa_cn_re.json, train_dataset_size:198991, eval_dataset:1009<br>d_path:f_multiturn_cn_69k.json, train_dataset_size:69318, eval_dataset:336<br>d_path:f_ver_qa_cn_28k.json, train_dataset_size:28140, eval_dataset:166 | 索引使用基座模型名字，<br>训练数据文件名字区别开 |  
  26 | 单条数据不补齐到<br>max_seq_len,<br>batch内部数据补齐到batch内最大长度 | batch内所有数据补齐到max_seq_len | | 提高计算效率，大多数长度相对很短
  27 | Moss-13B<br>loss异常 | ![img_v2_9723abf5-9038-4a56-97db-e9efa35fcf5g](https://github.com/xubuvd/LLMs/assets/59753505/c5a6dba6-4343-4e05-9112-2c4ad7b2694d)| 重新设置lr, warmup... |
+ 28 | GPU 卡住 |<img width="1263" alt="Screen Shot 2023-05-31 at 7 06 50 PM" src="https://github.com/xubuvd/LLMs/assets/59753505/71d4ec0f-bc17-49e7-9401-e62777e8e5da">| | 偶发性卡住，多机多卡常遇到的事
 
 # OpenAI购买平台
 https://eylink.cn/<br>
