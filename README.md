@@ -8,7 +8,10 @@ SFT和RLHF框架： 选择 DeepSpeed Chat框架<br>
 # 数据集构造，数据清洗方法
 慢慢加...,陆续开源数据收集、构造，清洗方法，包括预训练数据和指令数据<br>
 
-# DeepSpeedChat 优化 for 预训练和指令微调
+# iDeepSpeedChat 训练稳定后，开源出来
+DeepSpeedChat 这个开源框架更像一个玩具，实际训起来会有很多很多问题，需要持续优化，用于实际大模型训练...
+
+# iDeepSpeedChat 优化 for 预训练和指令微调
 No.      |Bug             |     原做法    | 修改           | 注评
  --------| :-----------:  |:-----------:  | :-----------:|:-----------:|
  1       | SFT Loss计算方式 | 所有tokens的预测损失（CE loss） |只计算模型respnse部分的预测损失 | 测试经验，计算所有token的loss，效果都不太好，只计算response的loss，其它部分mask掉
@@ -41,6 +44,11 @@ No.      |Bug             |     原做法    | 修改           | 注评
  27 | Moss-13B<br>loss异常 | ![img_v2_9723abf5-9038-4a56-97db-e9efa35fcf5g](https://github.com/xubuvd/LLMs/assets/59753505/c5a6dba6-4343-4e05-9112-2c4ad7b2694d)| 重新设置lr, warmup... |
  28 | GPU 卡住 |<img width="1263" alt="Screen Shot 2023-05-31 at 7 06 50 PM" src="https://github.com/xubuvd/LLMs/assets/59753505/71d4ec0f-bc17-49e7-9401-e62777e8e5da">| | 偶发性卡住，多机多卡常遇到的事<br>读数据阶段，0号GPU卡住不动.
 
+ 
+# iDeepSpeedChat 实训可视化图
+ ![Screen Shot 2023-06-01 at 5 56 13 PM](https://github.com/xubuvd/LLMs/assets/59753505/f22c4024-fba3-4a74-b1a5-4d1ca7107bcf)
+
+ 
 # OpenAI购买平台
 https://eylink.cn/<br>
 
