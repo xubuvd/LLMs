@@ -44,7 +44,7 @@ No.      |Bug             |     原做法    | 修改           | 注评
  27 | Moss-13B<br>loss异常 | ![img_v2_9723abf5-9038-4a56-97db-e9efa35fcf5g](https://github.com/xubuvd/LLMs/assets/59753505/c5a6dba6-4343-4e05-9112-2c4ad7b2694d)| 重新设置lr, warmup... |
  28 | GPU 卡住 |<img width="1263" alt="Screen Shot 2023-05-31 at 7 06 50 PM" src="https://github.com/xubuvd/LLMs/assets/59753505/71d4ec0f-bc17-49e7-9401-e62777e8e5da">| | 偶发性卡住，多机多卡常遇到的事<br>读数据阶段，0号GPU卡住不动.
  29 | OSError: [Errno 122] <br>Disk quota exceeded | root@master:~# quota -uvs user_name<br>Disk quotas for user user_name (uid 1006):<br>Filesystem   space   quota   limit   grace   files   quota   limit   grace<br>/dev/sda1   2862G*  2852G   2862G   6days   96582   2900k   3000k | | 快速存储系统写满<br>加系统监控，写到80%提前预警
- 30 | 读数据，机器之间<br>速度差别较大 | 1. gnode03机器：<br>@master:~/$ tail -f training.log<br>3%|▎         | 32285/1087101 [01:29<48:05, 365.57it/s]<br>2.gnode04机器：<br>@master:~/$ tail -f training.log<br>6%|▌         | 63310/1087101 [02:53<45:11, 377.51it/s]<br>$3.gnode06机器:<br>@master:~/$ tail -f training.log<br>19%|█▉        | 211851/1087101 [03:36<15:01, 970.99it/s] | 读取一个108万条数据的文件，<br>有的机器节点耗时50分钟；<br>有的机器节点耗时18分钟。| 快速文件系统配置存在问题
+ 30 | 读数据，机器之间<br>速度差别较大 | 1. gnode03机器：<br>@master:~/$ tail -f training.log<br>3% ▎ 32285/1087101 [01:29<48:05, 365.57it/s]<br>2.gnode04机器：<br>@master:~/$ tail -f training.log<br>6% ▌ 63310/1087101 [02:53<45:11, 377.51it/s]<br>$3.gnode06机器:<br>@master:~/$ tail -f training.log<br>19%|█▉        211851/1087101 [03:36<15:01, 970.99it/s] | 读取一个108万条数据的文件，<br>有的机器节点耗时50分钟；<br>有的机器节点耗时18分钟。| 快速文件系统配置存在问题
  
 
 
