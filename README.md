@@ -43,7 +43,7 @@ No.      |Bug             |     原做法    | 修改           | 注评
  27 | Moss-13B<br>loss异常 | ![img_v2_9723abf5-9038-4a56-97db-e9efa35fcf5g](https://github.com/xubuvd/LLMs/assets/59753505/c5a6dba6-4343-4e05-9112-2c4ad7b2694d)| <img width="685" alt="Screen Shot 2023-05-31 at 2 56 47 PM" src="https://github.com/xubuvd/LLMs/assets/59753505/73d98c57-f70b-49cd-967b-9ac736bab9cf"><img width="692" alt="Screen Shot 2023-05-31 at 2 59 33 PM" src="https://github.com/xubuvd/LLMs/assets/59753505/ff3aeaad-8a67-4bdc-af73-77dff559ceef"> | 重新设置lr, warmup... 
  27 | Moss-13B<br>loss异常 | ![img_v2_9723abf5-9038-4a56-97db-e9efa35fcf5g](https://github.com/xubuvd/LLMs/assets/59753505/c5a6dba6-4343-4e05-9112-2c4ad7b2694d)| 重新设置lr, warmup... |
  28 | GPU 卡住 |<img width="1263" alt="Screen Shot 2023-05-31 at 7 06 50 PM" src="https://github.com/xubuvd/LLMs/assets/59753505/71d4ec0f-bc17-49e7-9401-e62777e8e5da">| | 偶发性卡住，多机多卡常遇到的事<br>读数据阶段，0号GPU卡住不动.
- 29 | OSError: [Errno 122] <br>Disk quota exceeded | root@master:~# quota -uvs user_name<br>Disk quotas for user user_name (uid 1006):<br>Filesystem   space   quota   limit   grace   files   quota   limit   grace<br>/dev/sda1   2862G*  2852G   2862G   6days   96582   2900k   3000k | | 快速存储系统写满
+ 29 | OSError: [Errno 122] <br>Disk quota exceeded | root@master:~# quota -uvs user_name<br>Disk quotas for user user_name (uid 1006):<br>Filesystem   space   quota   limit   grace   files   quota   limit   grace<br>/dev/sda1   2862G*  2852G   2862G   6days   96582   2900k   3000k | | 快速存储系统写满<br>加系统监控，写到80%提前预警
  
 
 
