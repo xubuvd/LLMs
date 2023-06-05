@@ -56,7 +56,10 @@ No.      |Bug             |     原做法    | 修改           | 注评
 
  
 # iDeepSpeedChat 实训可视化图
- ![Screen Shot 2023-06-01 at 5 56 13 PM](https://github.com/xubuvd/LLMs/assets/59753505/f22c4024-fba3-4a74-b1a5-4d1ca7107bcf)
+ ![Screen Shot 2023-06-01 at 5 56 13 PM](https://github.com/xubuvd/LLMs/assets/59753505/f22c4024-fba3-4a74-b1a5-4d1ca7107bcf)<br>
+ ![Screen Shot 2023-06-05 at 5 33 49 PM](https://github.com/xubuvd/LLMs/assets/59753505/d1290a1b-cfa2-4bcd-b9e5-62a13542dbc8)<br>
+ ![Screen Shot 2023-06-05 at 5 34 09 PM](https://github.com/xubuvd/LLMs/assets/59753505/ab729983-d2ee-4258-974b-ba6abbe8969c)<br>
+ ![Screen Shot 2023-06-05 at 5 34 32 PM](https://github.com/xubuvd/LLMs/assets/59753505/a8ed8fee-6f2f-4259-ac34-f105a2188b60)<br>
 
  
 # OpenAI购买平台
