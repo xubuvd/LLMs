@@ -51,6 +51,7 @@ No.      |Bug             |     原做法    | 修改           | 注评
  34 | - | - |- | 效果优化
  35 | - | - |- | 效果优化
  36 | 启动训练时不提供具体数据文件，<br>只提供数据集目录，<br>自动读取目录下的所有数据文件  | 提供每一个训练数据文件名字  |提供训练数据集目录  | 预训练数据是由很多小文件组成的，<br>不方便在启动脚本里加入许多文件名字
+ 37 | load_dataset不能读大文件| pyarrow.lib.ArrowCapacityError: <br>array cannot contain more than 2147483646 bytes, <br>have 2572789185 | | from datasets import load_dataset
  
 
 
