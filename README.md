@@ -1,6 +1,6 @@
 # 从0到1预训练大语言模型
 预训练框架：DeepSpeedChat (放弃metaseq，ColossalAI)<br>
-SFT和RLHF框架： 选择 DeepSpeed Chat框架<br>
+SFT和RLHF框架： 选择 DeepSpeedChat框架<br>
 模型结构： 基于LLaMA构造的80B大语言模型；<br>
 <br>
 后续跟进相关进展，有问题欢迎交流 xubuvd@163.com<br>
@@ -9,8 +9,8 @@ SFT和RLHF框架： 选择 DeepSpeed Chat框架<br>
 慢慢加...,陆续开源数据收集、构造，清洗方法，包括预训练数据和指令数据<br>
 
 # iDeepSpeedChat 训练稳定后，会开源出来...
-DeepSpeedChat 这个开源框架更像一个玩具，实际训起来会有很多问题，需要持续优化，才能用于大规模语言模型训练.<br>
-现在开源的训练框架还没有能打的，必须自己针对性研发。<br>
+DeepSpeedChat 这个开源框架更像一个玩具，实际训起来会有很多问题，需要深入优化，才能应用于大规模、超大规模语言模型训练.<br>
+现在开源的训练框架还没有能打的。<br>
 
 # iDeepSpeedChat 优化 for 预训练和指令微调
 No.      |Bug             |     原做法    | 修改           | 注评
