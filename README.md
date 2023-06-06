@@ -125,6 +125,7 @@ DeepSpeedChat和trlX。Beaver项目开源内容包括：(a)数据集与模型：
 31 | Panda<br>中文开源大语言模型 |  https://github.com/dandelionsllm/pandallm |基于Llama-7B、-13B、-33B和-65B进行了中文领域的持续预训练，在中文基准测试中表现优异，远超同等类型的中文语言模型，Panda的模型和训练所用中文数据集将以开源形式发布，任何人都可以免费使用和参与开发。
 32 | BELLE<br>（LLaMA，链家） | https://github.com/LianjiaTech/BELLE | BELLE-LLaMA-EXT-13B，在LLaMA-13B的基础上扩展中文词表，并在400万高质量的对话数据上进行训练。
 33 | Linly-Chinese-LLaMA   | https://github.com/CVI-SZU/Linly | LLaMA-7B/13B基础上，中文二次预训练，上下文长度2048
+34 | CAMEL        | https://github.com/camel-ai/camel  | https://www.camel-ai.org/chat
 
 
 # ColossalAI 的性能测试
