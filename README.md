@@ -5,6 +5,9 @@ SFT和RLHF框架： 选择 DeepSpeedChat框架<br>
 <br>
 后续跟进相关进展，有问题欢迎交流 xubuvd@163.com<br>
 <br>
+# Open LLM Leaderboard
+https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard<br>
+
 # 数据集构造，数据清洗方法
 慢慢加...,陆续开源数据收集、构造，清洗方法，包括预训练数据和指令数据<br>
 
