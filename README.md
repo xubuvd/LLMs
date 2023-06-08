@@ -11,9 +11,12 @@ https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard<br>
 # 数据集构造，数据清洗方法
 慢慢加...,陆续开源数据收集、构造，清洗方法，包括预训练数据和指令数据<br>
 
-# iDeepSpeedChat 训练稳定后，会开源出来...
+# iDsChat 训练稳定后，会开源出来...
 DeepSpeedChat 这个开源框架更像一个玩具，实际训起来会有很多问题，需要深入优化，才能应用于大规模、超大规模语言模型训练.<br>
 现在开源的训练框架还没有能打的。<br>
+
+我们在DeepSpeedChat基础上做了大量的优化，可以支持500块GPU量级的超长训练。当前预训练的时间已经连续进行了两个月，无中断。<br>
+
 
 # iDeepSpeedChat 优化 for 预训练和指令微调
 No.      |Bug             |     原做法    | 修改           | 注评
