@@ -233,18 +233,8 @@ $ nvitop<br>
 效果见下图，显存使用率，GPU利用率，CPU利用率和内存使用率，一览无余：<br>
 ![WechatIMG73](https://github.com/xubuvd/LLMs/assets/59753505/a53899c2-e193-4ace-8efc-ac2ec5bc3e94)
 
-
-# ChatGPT相关资料（欢迎下载，顺便留个宝贵的小星星(Star)哦）
-1. LLM涌现能力-张俊林.pdf<br>
-2. 对话式大型语言模型-邱锡鹏.pdf <br>
-3. 探索大语言模型的垂直化训练技术与应用-陈运文.pdf<br>
-4. 哈尔滨工业大学：ChatGPT调研报告.pdf<br>
-5. 探索大语言模型的垂直化训练技术与应用-陈运文.pdf<br>
-6. 中文模型和部分预训练数据集： https://github.com/lonePatient/awesome-pretrained-chinese-nlp-models#<br>
-7. 154页微软GPT-4研究报告 <br>
-8. 陆奇《新范式 新时代 新机会》北京场.pdf<br>
-
 # 致谢
 
-# 微信交流群
+# 交流群
+如果你也对本项目感兴趣，欢迎加入群聊参与讨论交流。
 ![WechatIMG12](https://github.com/xubuvd/LLMs/assets/59753505/6df29548-6174-4771-813e-70b310546eec)
