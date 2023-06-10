@@ -6,6 +6,10 @@ SFT和RLHF框架： 选择 DeepSpeedChat框架<br>
 后续跟进相关进展，有问题欢迎交流 xubuvd@163.com<br>
 <br>
 
+# 微信交流群
+![WechatIMG12](https://github.com/xubuvd/LLMs/assets/59753505/6df29548-6174-4771-813e-70b310546eec)
+
+
 
 # iDsChat 训练稳定后，会开源出来...
 DeepSpeedChat 这个开源框架更像一个玩具，实际训起来会有很多问题，需要深入优化，才能应用于大规模、超大规模语言模型训练.<br>
