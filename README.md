@@ -237,4 +237,6 @@ $ nvitop<br>
 
 # 交流群
 如果你也对本项目感兴趣，欢迎加入群聊参与讨论交流。
-![WechatIMG12](https://github.com/xubuvd/LLMs/assets/59753505/6df29548-6174-4771-813e-70b310546eec)
+![xubu](https://github.com/xubuvd/LLMs/assets/59753505/1841da9f-110e-4b91-be0a-dbe351b399a0)
+
+ 
