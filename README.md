@@ -62,7 +62,8 @@ No.      |Bug             |     原做法    | 修改           | 注评
  35 | - | - |- | 效果优化
  36 | 启动训练时不提供具体数据文件，<br>只提供数据集目录，<br>自动读取目录下的所有数据文件  | 提供每一个训练数据文件名字  |提供训练数据集目录  | 预训练数据是由很多小文件组成的，<br>不方便在启动脚本里加入许多文件名字
  37 | load_dataset不能读大文件| pyarrow.lib.ArrowCapacityError: <br>array cannot contain more than 2147483646 bytes, <br>have 2572789185 | 内存映射，流式读取 | from datasets import load_dataset
- 38 | 数据量超出某个，<br>1T内存都被爆满 |<img width="1156" alt="Screen Shot 2023-06-10 at 12 21 25 AM" src="https://github.com/xubuvd/LLMs/assets/59753505/2585dad0-d80d-4c83-953d-d9a84e8a4fda"> | | 原始DeepSpeedChat框架的问题
+ 38 | 数据量超出某个临界点OOM，<br>1T内存都被爆满 |<img width="1156" alt="Screen Shot 2023-06-10 at 12 21 25 AM" src="https://github.com/xubuvd/LLMs/assets/59753505/2585dad0-d80d-4c83-953d-d9a84e8a4fda"> | 加载数据之前，内存消耗：<br>1-ToatlMem:1007, UsedMem:211, FreeMem:768<br>
+加载数据之后，内存消耗：<br>2-ToatlMem:1007, UsedMem:898, FreeMem:42<br>此时，空闲内存42G，开始进入 deepspeed.initialize（），使用的是ZeRO 2优化，如下图：<br>![image](https://github.com/xubuvd/LLMs/assets/59753505/1bbbf6f6-1c0c-4c5f-8f3a-62bec859c43d)| 原始DeepSpeedChat框架的问题
  
 
 
