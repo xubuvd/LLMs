@@ -17,7 +17,7 @@ DeepSpeedChat 这个开源框架更像一个玩具，实际训起来会有很多
 # Open LLM Leaderboard
 https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard<br>
 # 数据集构造，数据清洗方法
-慢慢加...,陆续开源数据收集、构造，清洗方法，包括预训练数据和指令数据<br>
+慢慢加...
 
 
 # iDsChat 优化 for 预训练和指令微调
