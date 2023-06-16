@@ -14,10 +14,10 @@ DeepSpeedChat 这个开源框架更像一个玩具，实际训起来会有很多
 利用本地私域数据（不方便注入到LLM内的数据）。
 
 
-# Open LLM Leaderboard
-https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard<br>
 # 数据集构造，数据清洗方法
-慢慢加...
+对LLM来说，数据集是极度重要的地方，数据工程需要一套方法论，人工审核数据这个工程量太大。<br>
+我们追求的是智能，那就不能干不智能的事，对不？<br>
+人工清洗数据，这件事失去意义，但现在也是最好的办法了。<br>
 
 
 # iDsChat 优化 for 预训练和指令微调
@@ -191,6 +191,8 @@ https://github.com/FranxYao/chain-of-thought-hub<br>
 https://huggingface.co/OpenAssistant/reward-model-deberta-v3-large-v2<br>
 OpenAssistant和LLaMA模型使用的打分模型
 
+# Open LLM Leaderboard
+https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard<br>
 
 # Prompt数据集收集
 1，人工标注一批；<br>
