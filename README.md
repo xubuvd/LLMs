@@ -135,6 +135,7 @@ DeepSpeedChat和trlX。Beaver项目开源内容包括：(a)数据集与模型：
 32 | BELLE<br>（LLaMA，链家） | https://github.com/LianjiaTech/BELLE | BELLE-LLaMA-EXT-13B，在LLaMA-13B的基础上扩展中文词表，并在400万高质量的对话数据上进行训练。
 33 | Linly-Chinese-LLaMA   | https://github.com/CVI-SZU/Linly | LLaMA-7B/13B基础上，中文二次预训练，上下文长度2048
 34 | CAMEL        | https://github.com/camel-ai/camel  | https://www.camel-ai.org/chat
+35 | Ziya-LLaMA-13B-v1 | https://huggingface.co/IDEA-CCNL/Ziya-LLaMA-13B-v1 | 姜子牙通用大模型V1是基于LLaMa的130亿参数的大规模预训练模型
 
 
 # ColossalAI 的性能测试
