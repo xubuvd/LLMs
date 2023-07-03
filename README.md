@@ -221,8 +221,7 @@ ModuleList(<br>
 )<br>
 
 # 开源预训练代码
-TencentPretrain: Tencent Pre-training Framework<br>
-https://github.com/Tencent/TencentPretrain<br>
+https://gitlab.idc.frontis.top:4443/AI/infra/frontllm<br>
 
 # 北京邮电大学 王小捷教授 ChatGPT 讲座分享
 
