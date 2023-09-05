@@ -31,7 +31,7 @@ RLHF框架：使用 DeepSpeedChat 进行训练<br>
   - 从数据多样性上看，各种数据类型的数据都有，大小基本符合互联网上的数据自然分布<br>
 
 ## 数据清洗
-
+清洗经验积累了很多，等我有时间写出来，待写......<br>
 
 
 # 基于DeepSpeedChat改造，用于RLHF训练的框架
@@ -104,7 +104,7 @@ DeepSpeedChat和trlX。Beaver项目开源内容包括：(a)数据集与模型：
 
 
 # ChatGLM-6B 全套微调代码，经过两周对ChatGLM-6B的指令微调，两条经验如下：<br>
-1. glm-6B是经过SFT和RLHF后的版本，再次微调不够友好<br>
+1. glm-6B是经过SFT和RLHF后的版本，再次微调不够友好，不易在一条微调方向上持续优化。<br>
 2. 需要在一个干净的纯基座模型上进行微调（SFT），使用高质量的业务指令数据；RLHF，是一个难题，需要一个高质量的reward model，目前正确的rlhf pipeline比较稀少，训练出来好的效果也是一个挑战。<br>
 
 # 国内大语言模型ChatGPT专区，欢迎交流邮箱：xubuvd@163.com
