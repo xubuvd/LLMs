@@ -10,7 +10,7 @@ SFT：使用上一步的预训练框架 (弃用DeepSpeedChat，因为它不支�
 RLHF框架：使用 DeepSpeedChat 进行训练<br>
 
 # sft数据集构造
-## 大规模COT高中试题数据集，命名为“cn-sft-exams-highSchool”
+## 大规模COT高中试题数据集，命名为“cn-sft-exams-highSchool-1M”
 开源超大规模高中试题指令数据集，100万条中文指令数据，涵盖语文、数学、物理、化学、地理、历史、政治和英文。<br>
 欢迎反馈问题。<br>
 
