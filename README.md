@@ -1,21 +1,21 @@
 # 从0到1预训练大语言模型
-预训练框架：DeepSpeedChat (放弃metaseq，ColossalAI)<br>
-SFT和RLHF框架： 选择 DeepSpeedChat框架<br>
-模型结构： 基于LLaMA构造的80B大语言模型；<br>
+预训练框架：基于 DeepSpeed + HuggFace Trainer 研发框架<br>
+模型结构： LLaMA；<br>
 <br>
 后续跟进相关进展，有问题欢迎交流 xubuvd@163.com<br>
 <br>
 
-# iDsChat
-DeepSpeedChat 这个开源框架更像一个玩具，实际训起来会有很多问题，需要深入优化，才能应用于大规模、超大规模语言模型训练.<br>
-现在开源的训练框架还没有能打的。<br>
+# sft微调训练和强化学习训练
+SFT：使用上一步的预训练框架 (弃用DeepSpeedChat，因为它不支持大规模数据训练，存在很多问题)<br>
+RLHF框架：使用 DeepSpeedChat 进行训练<br>
 
-# 自有大语言模型 + LangChain
-利用本地私域数据（不方便注入到LLM内的数据）。
+# sft数据集构造
+## 大规模COT高中试题数据集，命名为“cn-sft-exams-highSchool”
+开源超大规模高中试题指令数据集，100万条中文指令数据，涵盖语文、数学、物理、化学、地理、历史、政治和英文。<br>
+欢迎反馈问题。<br>
 
-
-# 数据集构造，数据清洗方法
-数据筛选和清洗，对大语言模型（LLM）最终效果的影响极度重要。<br>
+# 预训练数据收集和清洗
+数据收集和清洗，对大语言模型（LLM）最终效果的影响极度重要。<br>
 数据清洗需要一套方法论，预训练数据的三项关键指标：质量高、多样性和数量大。<br>
 ## 什么是质量高？
 - 一大段自然语言文本，语法上连贯流畅，没有插入无关的词汇、句子，语义上完整；<br>
@@ -30,13 +30,15 @@ DeepSpeedChat 这个开源框架更像一个玩具，实际训起来会有很多
 - 分量<br>
   - 从数据多样性上看，各种数据类型的数据都有，大小基本符合互联网上的数据自然分布<br>
 
-## 数据集清洗方法论
+## 数据清洗
 
-# iDsChat 优化 for 预训练和指令微调
+
+
+# 基于DeepSpeedChat改造，用于RLHF训练的框架
 No.      |Bug             |     原做法    | 修改           | 注评
  --------| :-----------:  |:-----------:  | :-----------:|:-----------:|
- 1       | SFT Loss计算方式 | 所有tokens的预测损失（CE loss） |只计算模型respnse部分的预测损失 | 计算所有token的loss，效果不好，只计算模型response的loss，其它部分mask掉
- 2       | 新增pre-train和<br>SFT两种损失Loss计算  |  只有SFT loss计算一种 |增加pre-train预训练 | 支持SFT和Pre-train混合训练，同一个batch内部有两类数据
+ 1       | Loss计算方式 | 所有tokens的预测损失（CE loss） |只计算模型respnse部分的预测损失 | 计算所有token的loss，效果不好，只计算模型response的loss，其它部分mask掉
+ 2       | 新增pre-train和<br>SFT两种损失Loss计算  |  只有loss计算一种 |增加pre-train预训练 | 支持SFT和Pre-train混合训练，同一个batch内部有两类数据
  3       | <endoftext>不作为一个特殊字符 | <endoftext>作为一个文本序列 | 使用<eos>特殊字符代替，不需要新加一个<endoftext> | 参考论文“A General Language Assistant as a Laboratory for Alignment”，用作特殊字符效果好一些。
  4  | subprocess.CalledProcessError: Command '['which', 'c++']' returned non-zero exit status 1. | g++ wasn't installed. | #apt-get install build-essential | g++环境问题
  5  | wandb.errors.UsageError: api_key not configured (no-tty). | |  #wandb login 根据提示获取api key注册一下即可 | wandb使用问题，退出后再进入要：$ wandb login --relogin
