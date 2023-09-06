@@ -7,7 +7,7 @@
 
 # sft微调训练和强化学习训练
 SFT：使用上一步的预训练框架 (弃用DeepSpeedChat，因为它不支持大规模数据训练，存在很多问题)<br>
-RLHF框架：使用 DeepSpeedChat 进行训练<br>
+RLHF框架：使用优化过的 DeepSpeedChat 进行训练<br>
 
 # sft数据集构造
 ## 大规模COT高中试题数据集，命名为“cn-sft-exams-highSchool-1M”
