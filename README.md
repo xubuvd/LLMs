@@ -97,7 +97,7 @@ No.      |Bug             |     原做法    | 修改           | 注评
 
  
 # OpenAI购买平台
-https://eylink.cn/<br>
+
 
 # 人类反馈的强化学习RLHF（Reinforcement Learning from Human Feedback）
 RLHF是一种利用强化学习方法从人类反馈中学习的技术，使大语言模型与人类偏好保持对齐并遵循人类意图，有三个较好的开源pipeline实现，Beaver（河狸），开源地址：https://github.com/PKU-Alignment/safe-rlhf<br>
@@ -111,11 +111,6 @@ DeepSpeedChat和trlX。Beaver项目开源内容包括：(a)数据集与模型：
 3. 提供安全约束满足的多尺度验证方式，支持 BIG-bench、GPT-4 Evaluation 等。<br>
 4. 支持参数定制化的 RLHF 和数据集定制接口。<br>
 ![rlhf_githubs](https://github.com/xubuvd/LLMs/assets/59753505/c3f76de4-64b5-4854-af31-2a78c27cb28c)
-
-
-# ChatGLM-6B 全套微调代码，经过两周对ChatGLM-6B的指令微调，两条经验如下：<br>
-1. glm-6B是经过SFT和RLHF后的版本，再次微调不够友好，不易在一条微调方向上持续优化。<br>
-2. 需要在一个干净的纯基座模型上进行微调（SFT），使用高质量的业务指令数据；RLHF，是一个难题，需要一个高质量的reward model，目前正确的rlhf pipeline比较稀少，训练出来好的效果也是一个挑战。<br>
 
 # 国内大语言模型ChatGPT专区，欢迎交流邮箱：xubuvd@163.com
 
