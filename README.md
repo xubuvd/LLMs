@@ -9,6 +9,12 @@
 SFT：使用上一步的预训练框架 (弃用DeepSpeedChat，因为它不支持大规模数据训练，存在很多问题)<br>
 RLHF框架：使用优化过的 DeepSpeedChat 进行训练<br>
 
+# DPO 偏好数据训练
+## DPO偏序数据集构造<br>
+## DPO训练，关键指标图示：<br>
+<img width="1410" alt="Screen Shot 2023-12-11 at 11 08 54 PM" src="https://github.com/xubuvd/LLMs/assets/59753505/ffd5722d-e40c-40f8-a3f0-eb9b3c3d8a2f">
+
+
 # 开源sft数据集构造
 有需要的，欢迎 xubuvd@163.com 索取。<br>
 ## 1. 大规模COT高中试题数据集，命名为“cn-sft-exams-highSchool-1M.jsonl”
