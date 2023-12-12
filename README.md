@@ -10,6 +10,7 @@ SFT：使用上一步的预训练框架 (弃用DeepSpeedChat，因为它不支�
 RLHF框架：使用优化过的 DeepSpeedChat 进行训练<br>
 
 # DPO 偏好数据训练
+DPO非常有效，目前在测试的13B，7B效果明显，GPT4胜率10个百分点以上，人的观感收益也很显著。<br>
 ## DPO偏序数据集构造<br>
 ## DPO训练，关键指标图示：<br>
 <img width="1410" alt="Screen Shot 2023-12-11 at 11 08 54 PM" src="https://github.com/xubuvd/LLMs/assets/59753505/ffd5722d-e40c-40f8-a3f0-eb9b3c3d8a2f">
