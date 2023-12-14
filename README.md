@@ -13,7 +13,7 @@ RLHF框架：使用优化过的 DeepSpeedChat 进行训练<br>
 DPO非常有效，目前在测试的13B、7B、70B效果明显；DPO版本相对于SFT模型，胜率提升了 10个 百分点以上，人的观感收益也很显著。<br>
 ## DPO偏序数据集构造<br>
 ## DPO训练，关键指标图示(一部分)：<br>
-![Screen Shot 2023-12-14 at 12 25 45 PM](https://github.com/xubuvd/LLMs/assets/59753505/aeb484a1-5bf6-4127-95dc-5cdc7b72f922)
+![Screen Shot 2023-12-14 at 2 24 54 PM](https://github.com/xubuvd/LLMs/assets/59753505/f22b0b2d-02ba-4cf5-aae2-77085664779c)
 
 
 # 开源sft数据集构造
