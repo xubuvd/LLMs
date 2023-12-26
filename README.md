@@ -11,6 +11,8 @@ RLHF框架：使用优化过的 DeepSpeedChat 进行训练<br>
 
 # DPO 偏好数据训练
 DPO非常有效，目前在测试的13B、7B、70B效果明显；DPO版本相对于SFT模型，胜率提升了 10个 百分点以上，人的观感收益也很显著。<br>
+具体业务上的准确率（accuracy），相对于SFT模型，提升了 「14.6」个百分点，<br>
+F1值，提升了 「13.5」个百分点。<br>
 ## DPO偏序数据集构造<br>
 ## DPO训练，关键指标图示(一部分)：<br>
 ![Screen Shot 2023-12-14 at 2 24 54 PM](https://github.com/xubuvd/LLMs/assets/59753505/f22b0b2d-02ba-4cf5-aae2-77085664779c)
