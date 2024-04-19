@@ -1,3 +1,14 @@
+# 陆续上传中文指令数据集，论文引用请遵照学术界规范添加引用，比如：
+@online{CnSftData,<br>
+  author = {Wei Pang},<br>
+  year = {2024},<br>
+  title = {Chinese Large Language Models},<br>
+  url = {https://github.com/xubuvd/LLMs},<br>
+  month = {APR},<br>
+  lastaccessed = {APR 19, 2024}<br>
+}<br>
+其它github里引用，请添加URL链接跳转，谢谢。<br>
+
 # 实操经验计划发三篇paper
 1. ACL 2024, ARR审稿 Meta 4分，已投递<br>
 2. EMNLP 2024，数据清洗，高效构造行业大模型两篇<br>
