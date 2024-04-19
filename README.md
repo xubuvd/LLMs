@@ -1,4 +1,7 @@
-# 实操经验计划发三篇paper，一篇ACL 2024在投，还有两篇在赶，数据清洗和行业指令数据集构造
+# 实操经验计划发三篇paper
+1. ACL 2024, ARR审稿 Meta 4分，已投递<br>
+2. EMNLP 2024，数据清洗，高效构造行业大模型两篇<br>
+3. AAAI 2024，大参数模型与中小参数模型的不同<br>
 
 # 落地大语言模型LLM，关键问题是在某个垂直领域，如何构造高质量指令数据集？有方法论吗？
 有的！<br>
@@ -30,12 +33,13 @@ DPO版本相对于SFT模型，胜率提升了 「10个」百分点以上，人�
 ## 1. 大规模COT高中试题数据集，命名为“cn-sft-exams-highSchool-1M.jsonl”
 开源超大规模高中试题指令数据集，100万条中文指令数据，涵盖语文、数学、物理、化学、地理、历史、政治和英文。<br>
 欢迎反馈问题。<br>
-已上传到：<br>
+已上传到：instruction_data/cn-CS-APAT-sftdata-30K.jsonl.zip, instruction_data/cn-CS-APAT-sftdata-5K.jsonl<br>
 指令格式：{"id": "26069", "data": ["问题","答案"]}<br>
+
 
 ## 2. 行政职业能力测验题数据集，命名为“cn-sft-CS-APAT-30K.jsonl”
 共 3 万条行测试题，逻辑推理题目，旨在提升模型的逻辑能力。<br>
-已上传到：<br>
+已上传到：instruction_data/cn-exam-high-school-5W.jsonl.zip<br>
 指令格式：{"id": "26069", "data": ["问题","答案"]}<br>
 
 # 预训练数据收集和清洗
