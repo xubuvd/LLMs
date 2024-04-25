@@ -10,6 +10,10 @@
 }<br>
 其它github里引用，请添加URL链接跳转。<br>
 
+# 大语言模型安全类微调指令数据集
+本次开源了三万条安全类指令数据集，已上传到instruction_data/cn-Safety-Prompts-gpt12k_baichuan30K.jsonl；<br>
+可用于大语言模型的安全指令微调，让LLM知道自己的能力边界在哪儿，满足3H原则，即有用的（helpful），诚实的（honest）和无害的（harmlessness）；<br>
+
 # 实操经验计划发三篇paper
 1. ACL 2024, ARR审稿 Meta 4分，已投递<br>
 2. EMNLP 2024，数据清洗，高效构造行业大模型两篇<br>
