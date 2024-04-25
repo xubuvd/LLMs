@@ -14,11 +14,6 @@
 本次开源了三万条安全类指令数据集，已上传到instruction_data/cn-Safety-Prompts-gpt12k_baichuan30K.jsonl；<br>
 可用于大语言模型的安全指令微调，让LLM知道自己的能力边界在哪儿，满足3H原则，即有用的（helpful），诚实的（honest）和无害的（harmlessness）；<br>
 
-# 实操经验计划发三篇paper
-1. ACL 2024, ARR审稿 Meta 4分，已投递<br>
-2. EMNLP 2024，数据清洗，高效构造行业大模型两篇<br>
-3. AAAI 2024，大参数模型与中小参数模型的不同<br>
-
 # 落地大语言模型LLM，关键问题是在某个垂直领域，如何构造高质量指令数据集？有方法论吗？
 有的！<br>
 我们实验了大量的方案，做了很多实验，在某个行业落地，提供了行业大模型。<br>
