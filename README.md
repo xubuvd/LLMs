@@ -1,7 +1,7 @@
 # 陆续上传中文指令数据集
 论文引用请参考：<br>
 @online{CnSftData,<br>
-  author = {Wei Pang},<br>
+  author = {XuBu},<br>
   year = {2024},<br>
   title = {Chinese Large Language Models},<br>
   url = {https://github.com/xubuvd/LLMs},<br>
