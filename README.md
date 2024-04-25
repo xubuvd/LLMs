@@ -11,7 +11,7 @@
 其它github里引用，请添加URL链接跳转。<br>
 
 # 大语言模型安全类微调指令数据集
-本次开源了一千条安全类指令数据集，总共有10万条，已上传到instruction_data/cn-Safety-Prompts-gpt12k_baichuan30K.jsonl；<br>
+本次开源了一千条安全类指令数据集，总共有10万条，已上传到instruction_data/cn-Safety-Prompts-gpt12k_baichuan1K.jsonl；<br>
 可用于大语言模型的安全指令微调，让LLM知道自己的能力边界在哪儿，满足3H原则，即有用的（helpful），诚实的（honest）和无害的（harmlessness）；<br>
 
 # 落地大语言模型LLM，关键问题是在某个垂直领域，如何构造高质量指令数据集？有方法论吗？
