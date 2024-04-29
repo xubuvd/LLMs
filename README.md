@@ -21,13 +21,28 @@
 本次开源了一千条安全类指令数据集，总共有10万条，已上传到instruction_data/cn-Safety-Prompts-gpt12k_baichuan1K.jsonl；<br>
 可用于大语言模型的安全指令微调，让LLM知道自己的能力边界在哪儿，满足3H原则，即有用的（helpful），诚实的（honest）和无害的（harmlessness）；<br>
 
-# 一千条无害的安全类中文指令数据集
+# 一千条安全类中文指令数据集
 本次开源了一千条安全类数据集，关于诈骗、欺骗、个人安全、个人攻击性歧视性仇恨言论、黄赌毒等类型，总共有10万条，已上传到instruction_data/cn-Chinese-harmlessness-1K.jsonl；
+
+# 开源sft数据集构造
+有需要的，欢迎 xubuvd@163.com 索取。<br>
+## 1. 大规模COT高中试题数据集，命名为“cn-sft-exams-highSchool-1M.jsonl”
+开源超大规模高中试题指令数据集，100万条中文指令数据，涵盖语文、数学、物理、化学、地理、历史、政治和英文。<br>
+欢迎反馈问题。<br>
+已上传到：instruction_data/cn-CS-APAT-sftdata-30K.jsonl.zip, instruction_data/cn-CS-APAT-sftdata-5K.jsonl<br>
+指令格式：{"id": "26069", "data": ["问题","答案"]}<br>
+
+## 2. 行政职业能力测验题数据集，命名为“cn-sft-CS-APAT-30K.jsonl”
+共 3 万条行测试题，逻辑推理题目，旨在提升模型的逻辑能力。<br>
+已上传到：instruction_data/cn-exam-high-school-5W.jsonl.zip<br>
+指令格式：{"id": "26069", "data": ["问题","答案"]}<br>
+
 
 # 落地大语言模型LLM，关键问题是在某个垂直领域，如何构造高质量指令数据集？有方法论吗？
 有的！<br>
 我们实验了大量的方案，做了很多实验，在某个行业落地，提供了行业大模型。<br>
 目前，正在进一步验证这一套方法论，在另外一个行业落地，徒手构造行业指令数据集，希望再次验证它的有效性。<br>
+
 
 # 从0到1预训练大语言模型
 预训练框架：基于 DeepSpeed + HuggFace Trainer 研发框架<br>
@@ -47,21 +62,6 @@ DPO版本相对于SFT模型，胜率提升了 「10个」百分点以上，人�
 ## DPO偏序数据集构造<br>
 ## DPO训练，关键指标图示(一部分)：<br>
 ![Screen Shot 2023-12-14 at 2 24 54 PM](https://github.com/xubuvd/LLMs/assets/59753505/f22b0b2d-02ba-4cf5-aae2-77085664779c)
-
-
-# 开源sft数据集构造
-有需要的，欢迎 xubuvd@163.com 索取。<br>
-## 1. 大规模COT高中试题数据集，命名为“cn-sft-exams-highSchool-1M.jsonl”
-开源超大规模高中试题指令数据集，100万条中文指令数据，涵盖语文、数学、物理、化学、地理、历史、政治和英文。<br>
-欢迎反馈问题。<br>
-已上传到：instruction_data/cn-CS-APAT-sftdata-30K.jsonl.zip, instruction_data/cn-CS-APAT-sftdata-5K.jsonl<br>
-指令格式：{"id": "26069", "data": ["问题","答案"]}<br>
-
-
-## 2. 行政职业能力测验题数据集，命名为“cn-sft-CS-APAT-30K.jsonl”
-共 3 万条行测试题，逻辑推理题目，旨在提升模型的逻辑能力。<br>
-已上传到：instruction_data/cn-exam-high-school-5W.jsonl.zip<br>
-指令格式：{"id": "26069", "data": ["问题","答案"]}<br>
 
 # 预训练数据收集和清洗
 数据收集和清洗，对大语言模型（LLM）最终效果的影响极度重要。<br>
