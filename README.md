@@ -29,7 +29,7 @@
 ## 1. 大规模COT高中试题数据集，命名为“cn-sft-exams-highSchool-1M.jsonl”
 开源超大规模高中试题指令数据集，100万条中文指令数据，涵盖语文、数学、物理、化学、地理、历史、政治和英文。<br>
 欢迎反馈问题。<br>
-已上传到：instruction_data/cn-CS-APAT-sftdata-30K.jsonl.zip, instruction_data/cn-CS-APAT-sftdata-5K.jsonl<br>
+已上传到：instruction_data/cn-sft-exams-highSchool-1k.jsonl<br>
 指令格式：{"id": "26069", "data": ["问题","答案"]}<br>
 
 ## 2. 行政职业能力测验题数据集，命名为“cn-sft-CS-APAT-30K.jsonl”
