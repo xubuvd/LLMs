@@ -1,25 +1,24 @@
 # 陆续上传中文指令数据集
 论文引用请参考：<br>
-@online{CnSftData,<br>
-  author = {XuBu},<br>
-  year = {2024},<br>
-  title = {Chinese Large Language Models},<br>
-  url = {https://github.com/xubuvd/LLMs},<br>
-  month = {APR},<br>
-  lastaccessed = {APR 19, 2024}<br>
-}<br>
+```
+@online{CnSftData,
+  author = {XuBu},
+  year = {2024},
+  title = {Chinese Large Language Models},
+  url = {https://github.com/xubuvd/LLMs},
+  month = {APR},
+  lastaccessed = {APR 19, 2024}
+}
+```
 其它github里引用，请添加URL链接跳转。<br>
 
 # 预训练数据清洗源代码和高并发框架
-大规模预训练数据集质量清洗，具有可读性好、高可用性，Python多线程高并发，运行在CPU上，源代码有需求的可联系：<br>
-包括一套清洗工程规范，清洗策略，多线程框架，文本去重代码，黑名单词典等内容。<br>
-代码质量高，即插即用，可复用性好。<br>
+大规模预训练数据集质量清洗，具有可读性好、高可用性，Python多线程高并发，运行在CPU上，源代码有需求的可联系：包括一套清洗工程规范，清洗策略，多线程框架，文本去重代码，黑名单词典等内容。代码质量高，即插即用，可复用性好。<br>
 
 # 中文大语言模型的安全对齐工作，用于安全审核评估
 <br>
 # 中文大语言模型安全类微调指令数据集
-本次开源了一千条安全类指令数据集，总共有10万条，已上传到instruction_data/cn-Safety-Prompts-gpt12k_baichuan1K.jsonl；<br>
-可用于大语言模型的安全指令微调，让LLM知道自己的能力边界在哪儿，满足3H原则，即有用的（helpful），诚实的（honest）和无害的（harmlessness）；<br>
+本次开源了一千条安全类指令数据集，总共有10万条，已上传到instruction_data/cn-Safety-Prompts-gpt12k_baichuan1K.jsonl; 可用于大语言模型的安全指令微调，让LLM知道自己的能力边界在哪儿，满足3H原则，即有用的（helpful），诚实的（honest）和无害的（harmlessness）；<br>
 
 # 一千条安全类中文指令数据集
 本次开源了一千条安全类数据集，关于诈骗、欺骗、个人安全、个人攻击性歧视性仇恨言论、黄赌毒等类型，总共有10万条，已上传到instruction_data/cn-Chinese-harmlessness-1K.jsonl；
