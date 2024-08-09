@@ -1,4 +1,4 @@
-# 陆续上传中文指令数据集
+![sftExp8 2_tsne_100000](https://github.com/user-attachments/assets/d580667b-1365-48b7-89e2-62ad9a023fe3)# 中文大语言模型指令数据集
 论文引用请参考：<br>
 ```
 @online{CnSftData,
@@ -31,11 +31,19 @@
 已上传到：instruction_data/cn-sft-exams-highSchool-1k.jsonl<br>
 指令格式：{"id": "26069", "data": ["问题","答案"]}<br>
 
+##2. SFT数据质量优化
+优化前：<br>
+![Uploading sftExp8.2_tsne_100000.png…]()
+<br>
+<br>
+优化后：<br>
+![sftExp8 3_tsne_100000](https://github.com/user-attachments/assets/5a0fe60a-a8ea-48a5-ba04-7945ea7995a7)
+
+
 ## 2. 行政职业能力测验题数据集，命名为“cn-sft-CS-APAT-30K.jsonl”
 共 3 万条行测试题，逻辑推理题目，旨在提升模型的逻辑能力。<br>
 已上传到：instruction_data/cn-exam-high-school-5W.jsonl.zip<br>
 指令格式：{"id": "26069", "data": ["问题","答案"]}<br>
-
 
 # 落地大语言模型LLM，关键问题是在某个垂直领域，如何构造高质量指令数据集？有方法论吗？
 有的！<br>
