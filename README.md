@@ -1,4 +1,4 @@
-![sftExp8 2_tsne_100000](https://github.com/user-attachments/assets/d580667b-1365-48b7-89e2-62ad9a023fe3)# 中文大语言模型指令数据集
+# 中文大语言模型指令数据集
 论文引用请参考：<br>
 ```
 @online{CnSftData,
@@ -31,10 +31,10 @@
 已上传到：instruction_data/cn-sft-exams-highSchool-1k.jsonl<br>
 指令格式：{"id": "26069", "data": ["问题","答案"]}<br>
 
-##2. SFT数据质量优化
+## 2. SFT数据质量优化
+数据质量和多样性，这两条是模型能力的来源。<br>
 优化前：<br>
-![Uploading sftExp8.2_tsne_100000.png…]()
-<br>
+![sftExp8 2_tsne_100000](https://github.com/user-attachments/assets/5f38e112-ed85-47fa-b919-e8431fc63af6)
 <br>
 优化后：<br>
 ![sftExp8 3_tsne_100000](https://github.com/user-attachments/assets/5a0fe60a-a8ea-48a5-ba04-7945ea7995a7)
