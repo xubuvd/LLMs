@@ -12,8 +12,8 @@ nohup bash run_data_cleaning.sh > r.log 2>&1 &
 bash stopall.sh
 ```
 # SFT 数据集清洗和数据质量提升代码框架
-## 数据清洗，也可复用预训练数据清洗代码
-## 数据质量提升
+🍂step1: 数据清洗，也可复用预训练数据清洗代码<br>
+🍂step2: 数据质量提升<br>
 1.指令质量打分<br>
 2.指令难度打分<br>
 3.聚类+语义去重复<br>
