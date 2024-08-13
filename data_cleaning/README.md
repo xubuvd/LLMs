@@ -1,7 +1,7 @@
 ```
-Author: xubuvd<br>
-Date: 13/08/2024<br>
-Email: xubuvd@163.com<br>
+Author: xubuvd
+Date: 13/08/2024
+Email: xubuvd@163.com
 ```
 
 # 🌱 Data Cleaning Recipe
