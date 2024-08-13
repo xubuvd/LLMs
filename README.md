@@ -4,7 +4,7 @@
 已经在36台A100，288块GPU卡上实际跑过预训练、增量预训练和SFT，涉及1.5T的tokens训练，等待开源...<br
 
 ## 预训练数据清洗源代码和高并发框架
-大规模预训练数据集质量清洗，具有可读性好、高可用性，Python多线程高并发，运行在CPU上，源代码有需求的可联系：包括一套清洗工程规范，清洗策略，多线程框架，文本去重代码，黑名单词典等内容。<br>
+大规模预训练数据集质量清洗，具有可读性好、高可用性，Python多线程高并发，包括一套清洗工程规范，清洗策略，多线程框架，文本去重代码，黑名单词典等内容。<br>
 2024.08.13，开源出来一部分基于启发式规则的多线程python清洗代码，代码复用性、可用性好：data_cleaning<br>
 清洗代码唯一的启动脚本：<br>
 ```
@@ -23,16 +23,13 @@ bash stopall.sh
 代码整理中，等待开源...<br>
 
 ## 中文大语言模型的安全对齐工作，用于安全审核评估
-中文大语言模型安全类微调指令数据集,本次开源了一千条安全类指令数据集，总共有10万条，已上传到instruction_data/cn-Safety-Prompts-gpt12k_baichuan1K.jsonl; 可用于大语言模型的安全指令微调，让LLM知道自己的能力边界在哪儿，满足3H原则，即有用的（helpful），诚实的（honest）和无害的（harmlessness）；<br>
-
-一千条安全类中文指令数据集,本次开源了一千条安全类数据集，关于诈骗、欺骗、个人安全、个人攻击性歧视性仇恨言论、黄赌毒等类型，总共有10万条，已上传到instruction_data/cn-Chinese-harmlessness-1K.jsonl；
+一千条安全类指令数据集:SFT_data_recipe/cn-Safety-Prompts-gpt12k_baichuan1K.jsonl<br>
+一千条安全类中文指令数据集,关于诈骗、欺骗、个人安全、个人攻击性歧视性仇恨言论、黄赌毒等类型:cn-Chinese-harmlessness-1K.jsonl；<br>
 
 ## 开源sft数据集构造
-有需要的，欢迎 xubuvd@163.com 索取。<br>
 ### 1. 大规模COT高中试题数据集，命名为“cn-sft-exams-highSchool-1M.jsonl”
 开源超大规模高中试题指令数据集，100万条中文指令数据，涵盖语文、数学、物理、化学、地理、历史、政治和英文。<br>
-欢迎反馈问题。<br>
-已上传到：instruction_data/cn-sft-exams-highSchool-1k.jsonl<br>
+已上传：cn-sft-exams-highSchool-1k.jsonl<br>
 指令格式：{"id": "26069", "data": ["问题","答案"]}<br>
 
 ### 2. SFT数据质量优化
@@ -46,21 +43,15 @@ bash stopall.sh
 
 ### 2. 行政职业能力测验题数据集，命名为“cn-sft-CS-APAT-30K.jsonl”
 共 3 万条行测试题，逻辑推理题目，旨在提升模型的逻辑能力。<br>
-已上传到：instruction_data/cn-exam-high-school-5W.jsonl.zip<br>
+已上传：cn-exam-high-school-5W.jsonl.zip<br>
 指令格式：{"id": "26069", "data": ["问题","答案"]}<br>
 
 ## 落地大语言模型LLM，关键问题是在某个垂直领域，如何构造高质量指令数据集？有方法论吗？
 有的！<br>
-我们实验了大量的方案，做了很多实验，在某个行业落地，提供了行业大模型。<br>
-目前，正在进一步验证这一套方法论，在另外一个行业落地，徒手构造行业指令数据集，希望再次验证它的有效性。<br>
-
 
 ## 从0到1预训练大语言模型
 预训练框架：基于 DeepSpeed + HuggFace Trainer 研发框架<br>
 模型结构： LLaMA；<br>
-<br>
-后续跟进相关进展，有问题欢迎交流 xubuvd@163.com<br>
-<br>
 
 ## 论文引用请参考
 ```
@@ -80,8 +71,7 @@ RLHF框架：使用优化过的 DeepSpeedChat 进行训练<br>
 
 ## DPO 偏好数据对齐
 DPO非常有效，目前在3万偏好数据集上，测试13B、70B和7B模型，效果非常显著；<br>
-DPO版本相对于SFT模型，胜率提升了 「10个」百分点以上，人的观感收益也很显著。<br>
-具体的，在业务上的准确率（accuracy），相对于SFT模型，提升了 「14.6」个百分点，F1值，提升了 「13.5」个百分点。<br>
+DPO版本相对于SFT模型，胜率提升了 「10个」百分点以上，人的观感收益也很显著。具体的，在业务上的准确率（accuracy），相对于SFT模型，提升了 「14.6」个百分点，F1值，提升了 「13.5」个百分点。<br>
 ### DPO偏序数据集构造<br>
 ### DPO训练，关键指标图示(一部分)：<br>
 ![Screen Shot 2023-12-14 at 2 24 54 PM](https://github.com/xubuvd/LLMs/assets/59753505/f22b0b2d-02ba-4cf5-aae2-77085664779c)
@@ -102,13 +92,9 @@ DPO版本相对于SFT模型，胜率提升了 「10个」百分点以上，人�
 - 分量<br>
   - 从数据多样性上看，各种数据类型的数据都有，大小基本符合互联网上的数据自然分布<br>
 
-### 数据清洗
-清洗经验积累了很多，等我有时间写出来，待写......<br>
-
 ## 交流群
 如果你也对本项目感兴趣，欢迎加入群聊参与讨论交流。
 ![xubu](https://github.com/xubuvd/LLMs/assets/59753505/1841da9f-110e-4b91-be0a-dbe351b399a0)
-
 
 ## 基于DeepSpeedChat改造，用于RLHF训练的框架
 No.      |Bug             |     原做法    | 修改           | 注评
@@ -160,13 +146,7 @@ No.      |Bug             |     原做法    | 修改           | 注评
  ![Screen Shot 2023-06-05 at 5 34 32 PM](https://github.com/xubuvd/LLMs/assets/59753505/a8ed8fee-6f2f-4259-ac34-f105a2188b60)<br>
 
 
-## 人类反馈的强化学习RLHF（Reinforcement Learning from Human Feedback）
-RLHF是一种利用强化学习方法从人类反馈中学习的技术，使大语言模型与人类偏好保持对齐并遵循人类意图，有三个较好的开源pipeline实现，Beaver（河狸），开源地址：https://github.com/PKU-Alignment/safe-rlhf<br>
-DeepSpeedChat和trlX。
-
 ## Open-source of LLMs 
-
- If you like the project, please show your support by leaving a star ⭐.
 
  No. |Projects | URL  | Comments
  --------| :-----------:  |:-----------:  | :-----------:|
@@ -220,7 +200,6 @@ LLaMA-7B |zero3	         |  2            | 76	          | 2048	       |  97%	   
 3, 黄色曲线是ZeRO3，绿色曲线是ZeRO2<br>
 ![img_v2_ef608a22-cae9-41a1-b725-0946e695e92g](https://user-images.githubusercontent.com/59753505/233527058-cb9a3bc8-23f3-456f-8bd8-6a8a773ae2f6.png)
 
-## 可下载的中英文指令数据集，仍需要清洗，下载见目录instruction_data
 ## 北京邮电大学 王小捷教授 ChatGPT 讲座分享
 
 https://www.bilibili.com/video/BV1G24y187yx/?buvid=ZB476BB0B8710E3C4F548C7C2778AA1427C6&is_story_h5=false&mid=AdBmq4Rn7y73B2EmgVj16A%3D%3D&p=1&plat_id=114&share_from=ugc&share_medium=iphone&share_plat=ios&share_session_id=5BB03E0F-3FED-48AF-A5FE-7F3E52513D99&share_source=WEIXIN&share_tag=s_i&timestamp=1677718075&unique_k=lk400UP&up_id=354740423<br>
