@@ -105,6 +105,10 @@ DPO版本相对于SFT模型，胜率提升了 「10个」百分点以上，人�
 ### 数据清洗
 清洗经验积累了很多，等我有时间写出来，待写......<br>
 
+## 交流群
+如果你也对本项目感兴趣，欢迎加入群聊参与讨论交流。
+![xubu](https://github.com/xubuvd/LLMs/assets/59753505/1841da9f-110e-4b91-be0a-dbe351b399a0)
+
 
 ## 基于DeepSpeedChat改造，用于RLHF训练的框架
 No.      |Bug             |     原做法    | 修改           | 注评
@@ -149,32 +153,16 @@ No.      |Bug             |     原做法    | 修改           | 注评
  38 | 数据量超出某个临界点OOM，<br>1T内存都被爆满 |<img width="1156" alt="Screen Shot 2023-06-10 at 12 21 25 AM" src="https://github.com/xubuvd/LLMs/assets/59753505/2585dad0-d80d-4c83-953d-d9a84e8a4fda"> | 加载数据之前，内存消耗：<br>1-ToatlMem:1007, UsedMem:211, FreeMem:768<br>加载数据之后，内存消耗：<br>2-ToatlMem:1007, UsedMem:898, FreeMem:42<br>此时，空闲内存42G，开始进入 deepspeed.initialize（），使用的是ZeRO 2优化 | 原模型训练流程拆分成两部分：<br>1， 生成内存映射文件（MemapGen）：<br>加载原始数据集，tokenizer后padding到max_seq_len大小，写入内存映射文件；<br>内存映射文件包括三个，分别是input_ids文件，attention_mask文件和 labels文件，还有一个config json配置文件。<br>2，模型训练<br>加载config文件和三个内存映射文件，跑起来...<br>优化点： 组装batch时，随机读取整个映射文件，速度巨慢；MemapGen时随机shuffle好文件，加载后按顺序组装batch。
  39 | OSError: [Errno 122] Disk quota exceeded | $ quota -uvs user_name  |  空间满，所有训练都会停止   | 增加硬盘存储监控，空间使用85%时提前预警，主动发现隐患点
 
-
- 
 ## iDeepSpeedChat 实训可视化图
  ![Screen Shot 2023-06-01 at 5 56 13 PM](https://github.com/xubuvd/LLMs/assets/59753505/f22c4024-fba3-4a74-b1a5-4d1ca7107bcf)<br>
  ![Screen Shot 2023-06-05 at 5 33 49 PM](https://github.com/xubuvd/LLMs/assets/59753505/d1290a1b-cfa2-4bcd-b9e5-62a13542dbc8)<br>
  ![Screen Shot 2023-06-05 at 5 34 09 PM](https://github.com/xubuvd/LLMs/assets/59753505/ab729983-d2ee-4258-974b-ba6abbe8969c)<br>
  ![Screen Shot 2023-06-05 at 5 34 32 PM](https://github.com/xubuvd/LLMs/assets/59753505/a8ed8fee-6f2f-4259-ac34-f105a2188b60)<br>
 
- 
-## OpenAI购买平台
-
 
 ## 人类反馈的强化学习RLHF（Reinforcement Learning from Human Feedback）
 RLHF是一种利用强化学习方法从人类反馈中学习的技术，使大语言模型与人类偏好保持对齐并遵循人类意图，有三个较好的开源pipeline实现，Beaver（河狸），开源地址：https://github.com/PKU-Alignment/safe-rlhf<br>
-DeepSpeedChat和trlX。Beaver项目开源内容包括：(a)数据集与模型：PKU-SafeRLHF<br>
-1.开源迄今为止最大的多轮 RLHF 数据集，规模达到 100 万条。<br>
-2.开源经 Safe-RLHF 对齐训练得到的 7B 参数的语言模型——Beaver，并支持在线部署。<br>
-3.开源了预训练的Reward Model和Cost Model的模型和参数。<br>
-(b) 首个可复现的RLHF基准，PKU-Alignment/safe-rlhf支持以下功能：<br>
-1. 支持LLM 模型的 SFT（Supervised Fine-Tuning）、RLHF训练、Safe RLHF训练。支持目前主流的预训练模型如 LLaMA、OPT 等模型的训练。<br>
-2. 支持 Reward Model 和 Cost Model 训练。<br>
-3. 提供安全约束满足的多尺度验证方式，支持 BIG-bench、GPT-4 Evaluation 等。<br>
-4. 支持参数定制化的 RLHF 和数据集定制接口。<br>
-![rlhf_githubs](https://github.com/xubuvd/LLMs/assets/59753505/c3f76de4-64b5-4854-af31-2a78c27cb28c)
-
-## 国内大语言模型ChatGPT专区，欢迎交流邮箱：xubuvd@163.com
+DeepSpeedChat和trlX。
 
 ## Open-source of LLMs 
 
@@ -232,75 +220,7 @@ LLaMA-7B |zero3	         |  2            | 76	          | 2048	       |  97%	   
 3, 黄色曲线是ZeRO3，绿色曲线是ZeRO2<br>
 ![img_v2_ef608a22-cae9-41a1-b725-0946e695e92g](https://user-images.githubusercontent.com/59753505/233527058-cb9a3bc8-23f3-456f-8bd8-6a8a773ae2f6.png)
 
-
-
-## 可下载的中英文指令数据集，仍需要清洗，下载见目录instruction_data/
-1，身份识别指令数据，需要自己修改细节内容 developer_instruction.json<br>
-2, 51504条中文指令数据，instinwild_ch.json<br>
-3, 52191条英文指令数据， instinwild_en.json<br>
-4, 10021+10444条羊驼指令数据， alpaca-zh-data-part-00.json和alpaca-zh-data-part-01.json<br>
-5, 543314条中文指令数据，belle.json<br>
-6，还有许多指令数据，因为上传单个文件不能超过25M，需要的请私信 xubuvd@163.com <br>
-
-## 可下载的开源数据集
-1，悟道 200G文本，下载链接：https://data.baai.ac.cn/details/WuDaoCorporaText, 数据格式<br>
-    {<br>
-        "id": 2,<br>
-        "uniqueKey": "074ca2f564544686f0fb6da026e00cac",<br>
-        "titleUkey": "231af201b8e7e359f8ab3c1a716dbe86",<br>
-        "dataType": "孕育常识",<br>
-        "title": "幼儿急疹一定会出疹子吗",<br>
-        "content": "婴儿抵抗力低下,时常发生小病小痛,可操碎了做父母的心,相信每个初为人母的妈妈,都会为了孩子的健康成长而对襁褓中的新生儿关怀备至,作为一个合格的妈妈,需要了解更多关于更好的照顾孩子的知识,才能防患于未然。那么幼儿急疹一定会出疹子吗。幼儿急疹一定会出疹子吗 幼儿急疹,也叫烧疹或玫瑰疹,是由病毒感染而引起的突发性皮疹,一年四季都可以发生,尤以春、秋两季较为普遍
-。常见于出生6个月至1岁左右的宝宝。幼儿急疹的潜伏期大约是10~15天。它虽然是传染性的疾病,却很安全,不会象麻疹、水痘那样广泛传染,家中成员同时患上的机会不大。 症状为宝宝首先是持续3~4天发高
-烧,体温在39~40度之间,热退后周身迅速出现皮疹,并且皮疹很快消退,没有脱屑,没有色素沉着。这些婴儿在没有出现皮疹前也有发热,热度可以比较高,但是感冒症状并不明显,精神、食欲等都还可以,咽喉可能
-有些红,颈部、枕部的淋巴结可以触到,但无触痛感,其他也没有什么症状和体症。当体温将退或已退时,全身出现玫瑰红色的皮疹时才恍然大悟,其实这时幼儿急疹已近尾声。幼儿急疹对婴儿健康并没什么影响,
-出过一次后将终身免疫。幼儿急疹的护理 (1)宝宝要多休息,不剧烈玩耍,体育锻炼暂停。 (2)多喝水,适当的加入果汁,这样即提高了维生素的摄入又利于出汗和排尿,可以促进毒物排出。 (3)宝宝患病期间吃
-些易消化食物,已经可以吃固体食物的宝宝,此时吃流质或半流质饮食。但是注意尽量要有营养。(不建议喝糖分较高的甜水,宝宝此时食欲不佳,会影响宝宝食欲) (4)刻意的适当补充维生素c和维生素b。 (5)宝
-宝休息的地方要安静,空气注意流通并保持新鲜。 (6)被子不能盖得太厚太多,这样不利于散热。 (7)注意宝宝的皮肤要保持清洁卫生,经常给孩子擦去身上的汗渍,即防止着凉同时防止出疹的宝宝感染。 (8)体
-温超过39度时,可用温水或37%的酒精为孩子擦身,防止高热惊厥。(小宝宝不建议酒精降温,如果家长不知道酒 精浓度也不建议给大宝宝使用,对皮肤有刺激性) (9)幼儿急疹是为数不多的出疹可以外出玩耍见风
-的疾病,但是中医认为此时宝宝体质虚,如果宝宝汗多,则不建议出 门见风。 (10) 此时部分宝宝可能很赖妈妈,希望一直依偎在妈妈怀里,可能是疾病导致宝宝的心理需要。所以请妈妈们尽量满足 宝宝的心理
-需要,也有利于亲子关系。"<br>
-    },<br>
-<br>
-2, Pile, 1.3T的英文数据, 需要强力清洗，下载链接 https://pile.eleuther.ai/, 数据格式：<br>
-{"text": "Q:\n\nFor some reason after inputting cin text, the cout comes out blank. Any ideas?\n\nSo I am trying to create a simple Text RPG. But, this one problem is holding me back.\n#include <iostream>\n\nusing namespace std;\n\nint main()\n{\n int input;\n long Sven;\n long Macy;\n\n  cout<<\"Choose your Character- 1.Sven or 2.Macy: \";\n cin>>input;\n cin.ignore();\n\n if ( input == Sven ){\n cout<<\"Welcome to CRPG, my good Sir!\";\n }\n\n if (input == Macy ){\n cout<<\"Girls cant fight, go back: \";\n }\n}\n\nSo this code here is what I have at the moment. When I run the program, it allows me to type the name of the character I want to choose. But, the output is always just a blank area of text. I am more or less new to C++ but, I have nice prior knowledge. Any help is great.\n\nA:\n\nWhat threw me off is when you said it allows me to type the name of the character I want to choose\nIn that case, go ahead with comparing the strings:\nEDIT: As Mohammed suggested, comparing strings can be done directly:\nstring input;\n\ncout<<\"Choose your Character- 1.Sven or 2.Macy: \";\ncin>>input;\ncin.ignore();\n\nif ( input == \"Sven\" ){\n cout<<\"Welcome to CRPG, my good Sir!\";\n}\n\nelse if ( input == \"Macy\"){\ncout<<\"Girls cant fight, go back: \";\n}\n\n", "meta": {"pile_set_name": "StackExchange"}}<br>
-<br>
-
-## 评价大模型复杂推理能力的Benchmark
-https://github.com/FranxYao/chain-of-thought-hub<br>
-
-## Reward打分模型，用于强化学习RLHF阶段
-https://huggingface.co/OpenAssistant/reward-model-deberta-v3-large-v2<br>
-OpenAssistant和LLaMA模型使用的打分模型
-
-## Open LLM Leaderboard
-https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard<br>
-
-## Prompt数据集收集
-1，人工标注一批；<br>
-2, 从人工标注的选择200个作为种子，调用ChatGPT获取新的prompt数据，筛选一批；<br>
-3, prompt总量在50K量级，可以满足RLHF阶段的微调了。<br>
-
-
-## chatglm-6B_finetuning的源代码解析
-
-模型，一层transformer_block，总共 28 层:<br>
-ModuleList(<br>
-  (0): GLMBlock(<br>
-    (input_layernorm): LayerNorm((4096,), eps=1e-05, elementwise_affine=True)<br>
-    (attention): SelfAttention(<br>
-      (rotary_emb): RotaryEmbedding()<br>
-      (query_key_value): Linear(in_features=4096, out_features=12288, bias=True)<br>
-      (dense): Linear(in_features=4096, out_features=4096, bias=True)<br>
-    )<br>
-    (post_attention_layernorm): LayerNorm((4096,), eps=1e-05, elementwise_affine=True)<br>
-    (mlp): GLU(<br>
-      (dense_h_to_4h): Linear(in_features=4096, out_features=16384, bias=True)<br>
-      (dense_4h_to_h): Linear(in_features=16384, out_features=4096, bias=True)<br>
-    )<br>
-  )<br>
-)<br>
-
+## 可下载的中英文指令数据集，仍需要清洗，下载见目录instruction_data
 ## 北京邮电大学 王小捷教授 ChatGPT 讲座分享
 
 https://www.bilibili.com/video/BV1G24y187yx/?buvid=ZB476BB0B8710E3C4F548C7C2778AA1427C6&is_story_h5=false&mid=AdBmq4Rn7y73B2EmgVj16A%3D%3D&p=1&plat_id=114&share_from=ugc&share_medium=iphone&share_plat=ios&share_session_id=5BB03E0F-3FED-48AF-A5FE-7F3E52513D99&share_source=WEIXIN&share_tag=s_i&timestamp=1677718075&unique_k=lk400UP&up_id=354740423<br>
@@ -312,9 +232,4 @@ $ nvitop<br>
 ![WechatIMG73](https://github.com/xubuvd/LLMs/assets/59753505/a53899c2-e193-4ace-8efc-ac2ec5bc3e94)
 
 ## 致谢
-
-## 交流群
-如果你也对本项目感兴趣，欢迎加入群聊参与讨论交流。
-![xubu](https://github.com/xubuvd/LLMs/assets/59753505/1841da9f-110e-4b91-be0a-dbe351b399a0)
-
  
