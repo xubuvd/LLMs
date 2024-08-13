@@ -1,6 +1,6 @@
 # 中文大语言模型实操技术全栈
 
-# 预训练数据清洗源代码和高并发框架
+## 预训练数据清洗源代码和高并发框架
 大规模预训练数据集质量清洗，具有可读性好、高可用性，Python多线程高并发，运行在CPU上，源代码有需求的可联系：包括一套清洗工程规范，清洗策略，多线程框架，文本去重代码，黑名单词典等内容。<br>
 2024.08.13，开源出来一部分基于启发式规则的多线程python清洗代码，代码复用性、可用性好：data_cleaning<br>
 清洗代码唯一的启动脚本：<br>
@@ -11,7 +11,7 @@ nohup bash run_data_cleaning.sh > r.log 2>&1 &
 ```
 bash stopall.sh
 ```
-# SFT 数据集清洗和数据质量提升代码框架
+## SFT 数据集清洗和数据质量提升代码框架
 🍂step1: 数据清洗，也可复用预训练数据清洗代码<br>
 🍂step2: 数据质量提升<br>
 1.指令质量打分<br>
@@ -19,23 +19,20 @@ bash stopall.sh
 3.聚类+语义去重复<br>
 代码整理中，等待开源...<br>
 
-# 中文大语言模型的安全对齐工作，用于安全审核评估
-<br>
-# 中文大语言模型安全类微调指令数据集
-本次开源了一千条安全类指令数据集，总共有10万条，已上传到instruction_data/cn-Safety-Prompts-gpt12k_baichuan1K.jsonl; 可用于大语言模型的安全指令微调，让LLM知道自己的能力边界在哪儿，满足3H原则，即有用的（helpful），诚实的（honest）和无害的（harmlessness）；<br>
+## 中文大语言模型的安全对齐工作，用于安全审核评估
+中文大语言模型安全类微调指令数据集,本次开源了一千条安全类指令数据集，总共有10万条，已上传到instruction_data/cn-Safety-Prompts-gpt12k_baichuan1K.jsonl; 可用于大语言模型的安全指令微调，让LLM知道自己的能力边界在哪儿，满足3H原则，即有用的（helpful），诚实的（honest）和无害的（harmlessness）；<br>
 
-# 一千条安全类中文指令数据集
-本次开源了一千条安全类数据集，关于诈骗、欺骗、个人安全、个人攻击性歧视性仇恨言论、黄赌毒等类型，总共有10万条，已上传到instruction_data/cn-Chinese-harmlessness-1K.jsonl；
+一千条安全类中文指令数据集,本次开源了一千条安全类数据集，关于诈骗、欺骗、个人安全、个人攻击性歧视性仇恨言论、黄赌毒等类型，总共有10万条，已上传到instruction_data/cn-Chinese-harmlessness-1K.jsonl；
 
-# 开源sft数据集构造
+## 开源sft数据集构造
 有需要的，欢迎 xubuvd@163.com 索取。<br>
-## 1. 大规模COT高中试题数据集，命名为“cn-sft-exams-highSchool-1M.jsonl”
+### 1. 大规模COT高中试题数据集，命名为“cn-sft-exams-highSchool-1M.jsonl”
 开源超大规模高中试题指令数据集，100万条中文指令数据，涵盖语文、数学、物理、化学、地理、历史、政治和英文。<br>
 欢迎反馈问题。<br>
 已上传到：instruction_data/cn-sft-exams-highSchool-1k.jsonl<br>
 指令格式：{"id": "26069", "data": ["问题","答案"]}<br>
 
-## 2. SFT数据质量优化
+### 2. SFT数据质量优化
 数据质量和多样性，这两条是模型能力的来源。<br>
 优化前：<br>
 ![sftExp8 2_tsne_100000](https://github.com/user-attachments/assets/5f38e112-ed85-47fa-b919-e8431fc63af6)
@@ -44,25 +41,25 @@ bash stopall.sh
 ![sftExp8 3_tsne_100000](https://github.com/user-attachments/assets/5a0fe60a-a8ea-48a5-ba04-7945ea7995a7)
 
 
-## 2. 行政职业能力测验题数据集，命名为“cn-sft-CS-APAT-30K.jsonl”
+### 2. 行政职业能力测验题数据集，命名为“cn-sft-CS-APAT-30K.jsonl”
 共 3 万条行测试题，逻辑推理题目，旨在提升模型的逻辑能力。<br>
 已上传到：instruction_data/cn-exam-high-school-5W.jsonl.zip<br>
 指令格式：{"id": "26069", "data": ["问题","答案"]}<br>
 
-# 落地大语言模型LLM，关键问题是在某个垂直领域，如何构造高质量指令数据集？有方法论吗？
+## 落地大语言模型LLM，关键问题是在某个垂直领域，如何构造高质量指令数据集？有方法论吗？
 有的！<br>
 我们实验了大量的方案，做了很多实验，在某个行业落地，提供了行业大模型。<br>
 目前，正在进一步验证这一套方法论，在另外一个行业落地，徒手构造行业指令数据集，希望再次验证它的有效性。<br>
 
 
-# 从0到1预训练大语言模型
+## 从0到1预训练大语言模型
 预训练框架：基于 DeepSpeed + HuggFace Trainer 研发框架<br>
 模型结构： LLaMA；<br>
 <br>
 后续跟进相关进展，有问题欢迎交流 xubuvd@163.com<br>
 <br>
 
-# 论文引用请参考
+## 论文引用请参考
 ```
 @online{CnSftData,
   author = {XuBu},
@@ -74,39 +71,39 @@ bash stopall.sh
 }
 ```
 
-# sft微调训练和强化学习训练
+## sft微调训练和强化学习训练
 SFT：使用上一步的预训练框架 (弃用DeepSpeedChat，因为它不支持大规模数据训练，存在很多问题)<br>
 RLHF框架：使用优化过的 DeepSpeedChat 进行训练<br>
 
-# DPO 偏好数据对齐
+## DPO 偏好数据对齐
 DPO非常有效，目前在3万偏好数据集上，测试13B、70B和7B模型，效果非常显著；<br>
 DPO版本相对于SFT模型，胜率提升了 「10个」百分点以上，人的观感收益也很显著。<br>
 具体的，在业务上的准确率（accuracy），相对于SFT模型，提升了 「14.6」个百分点，F1值，提升了 「13.5」个百分点。<br>
-## DPO偏序数据集构造<br>
-## DPO训练，关键指标图示(一部分)：<br>
+### DPO偏序数据集构造<br>
+### DPO训练，关键指标图示(一部分)：<br>
 ![Screen Shot 2023-12-14 at 2 24 54 PM](https://github.com/xubuvd/LLMs/assets/59753505/f22b0b2d-02ba-4cf5-aae2-77085664779c)
 
-# 预训练数据收集和清洗
+## 预训练数据收集和清洗
 数据收集和清洗，对大语言模型（LLM）最终效果的影响极度重要。<br>
 数据清洗需要一套方法论，预训练数据的三项关键指标：质量高、多样性和数量大。<br>
-## 什么是质量高？
+### 什么是质量高？
 - 一大段自然语言文本，语法上连贯流畅，没有插入无关的词汇、句子，语义上完整；<br>
 - 标点符号符合行文规范；
-## 什么是多样性？
+### 什么是多样性？
   - 覆盖各个通用领域和学科的知识<br>
   - 构建一个全面的「行业领域知识体系」<br>
   - 整合上述各类信息源，确保广泛的知识覆盖<br>
-## 什么是数量大？
+### 什么是数量大？
 - 总量<br>
   - Pretrain 数据总量大，以LLaMA tokens计算，约 1~2 T tokens 左右<br>
 - 分量<br>
   - 从数据多样性上看，各种数据类型的数据都有，大小基本符合互联网上的数据自然分布<br>
 
-## 数据清洗
+### 数据清洗
 清洗经验积累了很多，等我有时间写出来，待写......<br>
 
 
-# 基于DeepSpeedChat改造，用于RLHF训练的框架
+## 基于DeepSpeedChat改造，用于RLHF训练的框架
 No.      |Bug             |     原做法    | 修改           | 注评
  --------| :-----------:  |:-----------:  | :-----------:|:-----------:|
  1       | Loss计算方式 | 所有tokens的预测损失（CE loss） |只计算模型respnse部分的预测损失 | 计算所有token的loss，效果不好，只计算模型response的loss，其它部分mask掉
@@ -151,17 +148,17 @@ No.      |Bug             |     原做法    | 修改           | 注评
 
 
  
-# iDeepSpeedChat 实训可视化图
+## iDeepSpeedChat 实训可视化图
  ![Screen Shot 2023-06-01 at 5 56 13 PM](https://github.com/xubuvd/LLMs/assets/59753505/f22c4024-fba3-4a74-b1a5-4d1ca7107bcf)<br>
  ![Screen Shot 2023-06-05 at 5 33 49 PM](https://github.com/xubuvd/LLMs/assets/59753505/d1290a1b-cfa2-4bcd-b9e5-62a13542dbc8)<br>
  ![Screen Shot 2023-06-05 at 5 34 09 PM](https://github.com/xubuvd/LLMs/assets/59753505/ab729983-d2ee-4258-974b-ba6abbe8969c)<br>
  ![Screen Shot 2023-06-05 at 5 34 32 PM](https://github.com/xubuvd/LLMs/assets/59753505/a8ed8fee-6f2f-4259-ac34-f105a2188b60)<br>
 
  
-# OpenAI购买平台
+## OpenAI购买平台
 
 
-# 人类反馈的强化学习RLHF（Reinforcement Learning from Human Feedback）
+## 人类反馈的强化学习RLHF（Reinforcement Learning from Human Feedback）
 RLHF是一种利用强化学习方法从人类反馈中学习的技术，使大语言模型与人类偏好保持对齐并遵循人类意图，有三个较好的开源pipeline实现，Beaver（河狸），开源地址：https://github.com/PKU-Alignment/safe-rlhf<br>
 DeepSpeedChat和trlX。Beaver项目开源内容包括：(a)数据集与模型：PKU-SafeRLHF<br>
 1.开源迄今为止最大的多轮 RLHF 数据集，规模达到 100 万条。<br>
@@ -174,9 +171,9 @@ DeepSpeedChat和trlX。Beaver项目开源内容包括：(a)数据集与模型：
 4. 支持参数定制化的 RLHF 和数据集定制接口。<br>
 ![rlhf_githubs](https://github.com/xubuvd/LLMs/assets/59753505/c3f76de4-64b5-4854-af31-2a78c27cb28c)
 
-# 国内大语言模型ChatGPT专区，欢迎交流邮箱：xubuvd@163.com
+## 国内大语言模型ChatGPT专区，欢迎交流邮箱：xubuvd@163.com
 
-# Open-source of LLMs 
+## Open-source of LLMs 
 
  If you like the project, please show your support by leaving a star ⭐.
 
@@ -219,7 +216,7 @@ DeepSpeedChat和trlX。Beaver项目开源内容包括：(a)数据集与模型：
 35 | Ziya-LLaMA-13B-v1 | https://huggingface.co/IDEA-CCNL/Ziya-LLaMA-13B-v1 | 姜子牙通用大模型V1是基于LLaMa的130亿参数的大规模预训练模型
 36 | 悟道·天鹰（Aquila） | https://github.com/FlagAI-Open/FlagAI/tree/master/examples/Aquila/Aquila-chat |
 
-# ColossalAI 的性能测试
+## ColossalAI 的性能测试
 1， ZeRO 2的性能，tflops 约为251<br>
 ![Screen Shot 2023-04-21 at 10 32 14 AM](https://user-images.githubusercontent.com/59753505/233526814-3331b468-37d0-44dc-8484-d78da549466a.png)<br>
 2, ZeRO 2和3的性能对比<br>
@@ -234,7 +231,7 @@ LLaMA-7B |zero3	         |  2            | 76	          | 2048	       |  97%	   
 
 
 
-# 可下载的中英文指令数据集，仍需要清洗，下载见目录instruction_data/
+## 可下载的中英文指令数据集，仍需要清洗，下载见目录instruction_data/
 1，身份识别指令数据，需要自己修改细节内容 developer_instruction.json<br>
 2, 51504条中文指令数据，instinwild_ch.json<br>
 3, 52191条英文指令数据， instinwild_en.json<br>
@@ -242,7 +239,7 @@ LLaMA-7B |zero3	         |  2            | 76	          | 2048	       |  97%	   
 5, 543314条中文指令数据，belle.json<br>
 6，还有许多指令数据，因为上传单个文件不能超过25M，需要的请私信 xubuvd@163.com <br>
 
-# 可下载的开源数据集
+## 可下载的开源数据集
 1，悟道 200G文本，下载链接：https://data.baai.ac.cn/details/WuDaoCorporaText, 数据格式<br>
     {<br>
         "id": 2,<br>
@@ -266,23 +263,23 @@ LLaMA-7B |zero3	         |  2            | 76	          | 2048	       |  97%	   
 {"text": "Q:\n\nFor some reason after inputting cin text, the cout comes out blank. Any ideas?\n\nSo I am trying to create a simple Text RPG. But, this one problem is holding me back.\n#include <iostream>\n\nusing namespace std;\n\nint main()\n{\n int input;\n long Sven;\n long Macy;\n\n  cout<<\"Choose your Character- 1.Sven or 2.Macy: \";\n cin>>input;\n cin.ignore();\n\n if ( input == Sven ){\n cout<<\"Welcome to CRPG, my good Sir!\";\n }\n\n if (input == Macy ){\n cout<<\"Girls cant fight, go back: \";\n }\n}\n\nSo this code here is what I have at the moment. When I run the program, it allows me to type the name of the character I want to choose. But, the output is always just a blank area of text. I am more or less new to C++ but, I have nice prior knowledge. Any help is great.\n\nA:\n\nWhat threw me off is when you said it allows me to type the name of the character I want to choose\nIn that case, go ahead with comparing the strings:\nEDIT: As Mohammed suggested, comparing strings can be done directly:\nstring input;\n\ncout<<\"Choose your Character- 1.Sven or 2.Macy: \";\ncin>>input;\ncin.ignore();\n\nif ( input == \"Sven\" ){\n cout<<\"Welcome to CRPG, my good Sir!\";\n}\n\nelse if ( input == \"Macy\"){\ncout<<\"Girls cant fight, go back: \";\n}\n\n", "meta": {"pile_set_name": "StackExchange"}}<br>
 <br>
 
-# 评价大模型复杂推理能力的Benchmark
+## 评价大模型复杂推理能力的Benchmark
 https://github.com/FranxYao/chain-of-thought-hub<br>
 
-# Reward打分模型，用于强化学习RLHF阶段
+## Reward打分模型，用于强化学习RLHF阶段
 https://huggingface.co/OpenAssistant/reward-model-deberta-v3-large-v2<br>
 OpenAssistant和LLaMA模型使用的打分模型
 
-# Open LLM Leaderboard
+## Open LLM Leaderboard
 https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard<br>
 
-# Prompt数据集收集
+## Prompt数据集收集
 1，人工标注一批；<br>
 2, 从人工标注的选择200个作为种子，调用ChatGPT获取新的prompt数据，筛选一批；<br>
 3, prompt总量在50K量级，可以满足RLHF阶段的微调了。<br>
 
 
-# chatglm-6B_finetuning的源代码解析
+## chatglm-6B_finetuning的源代码解析
 
 模型，一层transformer_block，总共 28 层:<br>
 ModuleList(<br>
@@ -301,19 +298,19 @@ ModuleList(<br>
   )<br>
 )<br>
 
-# 北京邮电大学 王小捷教授 ChatGPT 讲座分享
+## 北京邮电大学 王小捷教授 ChatGPT 讲座分享
 
 https://www.bilibili.com/video/BV1G24y187yx/?buvid=ZB476BB0B8710E3C4F548C7C2778AA1427C6&is_story_h5=false&mid=AdBmq4Rn7y73B2EmgVj16A%3D%3D&p=1&plat_id=114&share_from=ugc&share_medium=iphone&share_plat=ios&share_session_id=5BB03E0F-3FED-48AF-A5FE-7F3E52513D99&share_source=WEIXIN&share_tag=s_i&timestamp=1677718075&unique_k=lk400UP&up_id=354740423<br>
 
-# 训练大语言模型中，一个查看GPU 卡的好用小工具
+## 训练大语言模型中，一个查看GPU 卡的好用小工具
 $ pip install nvitop<br>
 $ nvitop<br>
 效果见下图，显存使用率，GPU利用率，CPU利用率和内存使用率，一览无余：<br>
 ![WechatIMG73](https://github.com/xubuvd/LLMs/assets/59753505/a53899c2-e193-4ace-8efc-ac2ec5bc3e94)
 
-# 致谢
+## 致谢
 
-# 交流群
+## 交流群
 如果你也对本项目感兴趣，欢迎加入群聊参与讨论交流。
 ![xubu](https://github.com/xubuvd/LLMs/assets/59753505/1841da9f-110e-4b91-be0a-dbe351b399a0)
 
