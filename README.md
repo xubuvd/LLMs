@@ -1,16 +1,4 @@
 # 中文大语言模型实操技术全栈
-论文引用请参考：<br>
-```
-@online{CnSftData,
-  author = {XuBu},
-  year = {2024},
-  title = {Chinese Large Language Models},
-  url = {https://github.com/xubuvd/LLMs},
-  month = {APR},
-  lastaccessed = {APR 19, 2024}
-}
-```
-其它github里引用，请添加URL链接跳转。<br>
 
 # 预训练数据清洗源代码和高并发框架
 大规模预训练数据集质量清洗，具有可读性好、高可用性，Python多线程高并发，运行在CPU上，源代码有需求的可联系：包括一套清洗工程规范，清洗策略，多线程框架，文本去重代码，黑名单词典等内容。代码质量高，即插即用，可复用性好。<br>
@@ -24,6 +12,13 @@ nohup bash run_data_cleaning.sh > r.log 2>&1 &
 ```
 bash stopall.sh
 ```
+# SFT 数据集清洗和数据质量提升代码框架
+## 数据清洗，也可复用预训练数据清洗代码
+## 数据质量提升
+1.指令质量打分<br>
+2.指令难度打分<br>
+3.聚类+语义去重复<br>
+代码整理中，等待开源...<br>
 
 # 中文大语言模型的安全对齐工作，用于安全审核评估
 <br>
@@ -67,6 +62,18 @@ bash stopall.sh
 <br>
 后续跟进相关进展，有问题欢迎交流 xubuvd@163.com<br>
 <br>
+
+# 论文引用请参考
+```
+@online{CnSftData,
+  author = {XuBu},
+  year = {2024},
+  title = {Chinese Large Language Models},
+  url = {https://github.com/xubuvd/LLMs},
+  month = {APR},
+  lastaccessed = {APR 19, 2024}
+}
+```
 
 # sft微调训练和强化学习训练
 SFT：使用上一步的预训练框架 (弃用DeepSpeedChat，因为它不支持大规模数据训练，存在很多问题)<br>
