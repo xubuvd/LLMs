@@ -1,7 +1,7 @@
 # 中文大语言模型实操技术全栈
 
 ## 高可用预训练、SFT和DPO偏好对齐代码框架
-已经在36台A100，288块GPU卡上实际跑过预训练、增量预训练和SFT，涉及1.5T的tokens训练，等待开源...<br
+已经在36台A100，288块GPU卡上实际跑过预训练、增量预训练和SFT，涉及1.5T的tokens训练，等待开源...<br>
 
 ## 预训练数据清洗源代码和高并发框架
 大规模预训练数据集质量清洗，具有可读性好、高可用性，Python多线程高并发，包括一套清洗工程规范，清洗策略，多线程框架，文本去重代码，黑名单词典等内容。<br>
@@ -203,12 +203,6 @@ LLaMA-7B |zero3	         |  2            | 76	          | 2048	       |  97%	   
 ## 北京邮电大学 王小捷教授 ChatGPT 讲座分享
 
 https://www.bilibili.com/video/BV1G24y187yx/?buvid=ZB476BB0B8710E3C4F548C7C2778AA1427C6&is_story_h5=false&mid=AdBmq4Rn7y73B2EmgVj16A%3D%3D&p=1&plat_id=114&share_from=ugc&share_medium=iphone&share_plat=ios&share_session_id=5BB03E0F-3FED-48AF-A5FE-7F3E52513D99&share_source=WEIXIN&share_tag=s_i&timestamp=1677718075&unique_k=lk400UP&up_id=354740423<br>
-
-## 训练大语言模型中，一个查看GPU 卡的好用小工具
-$ pip install nvitop<br>
-$ nvitop<br>
-效果见下图，显存使用率，GPU利用率，CPU利用率和内存使用率，一览无余：<br>
-![WechatIMG73](https://github.com/xubuvd/LLMs/assets/59753505/a53899c2-e193-4ace-8efc-ac2ec5bc3e94)
 
 ## 致谢
  
