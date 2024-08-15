@@ -44,7 +44,7 @@ bash stopall.sh
 <br>
 优化后：<br>
 ![sftExp8 3_tsne_100000](https://github.com/user-attachments/assets/5a0fe60a-a8ea-48a5-ba04-7945ea7995a7)
-
+上述数据分布图生成代码：./utils/tsne_cluster_show.py<br>
 
 ### 2. 行政职业能力测验题数据集，命名为“cn-sft-CS-APAT-30K.jsonl”
 共 3 万条行测试题，逻辑推理题目，旨在提升模型的逻辑能力。<br>
