@@ -5,7 +5,7 @@
 
 ## SFT代码开源：
 地址：https://github.com/xubuvd/PhasedSFT<br>
-代码在16台A100、A800和H100机器上，经受过了大规模的SFT训练，数据量最多达 200万条，已经训练过的模型有Llama1、Llama2、Llama3、Qwen1.0、Qwen1.5 和 Mistral，稳定可用的。<br>
+代码在16台A100、A800和H100机器上，经受过了大规模的SFT训练，数据量最多达 200万条，已经训练过的模型有Llama1、Llama2、Llama3、Qwen1、Qwen1.5、Qwen2 和 Mistral，稳定可用的。<br>
 
 
 ## 预训练数据清洗源代码和高并发框架
