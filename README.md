@@ -1,13 +1,13 @@
 # 中文大语言模型实操技术全栈
 
-## 高可用预训练、SFT和DPO偏好对齐代码框架
+## 预训练、SFT和DPO偏好对齐代码框架
 已经在36台A100，288块GPU卡上实际跑过预训练、增量预训练和SFT，涉及1.5T的tokens训练，等待开源...<br>
 
 ### SFT代码开源
 地址：https://github.com/xubuvd/PhasedSFT<br>
 代码在16台A100、A800和H100机器上，经受过了大规模的SFT训练，数据量最多达 200万条，已经训练过的模型有Llama1、Llama2、Llama3、Qwen1、Qwen1.5、Qwen2 和 Mistral，稳定可用的。<br>
 
-### Post-Training with Direct Preference Optimization
+### 偏好训练 Post-Training with Direct Preference Optimization
 地址：coming soon...<br>
 代码在16台A100、A800和H100机器上训练过，DPO偏好数据最多到50万条，稳定可用。
 
