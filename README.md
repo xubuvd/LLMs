@@ -7,6 +7,10 @@
 地址：https://github.com/xubuvd/PhasedSFT<br>
 代码在16台A100、A800和H100机器上，经受过了大规模的SFT训练，数据量最多达 200万条，已经训练过的模型有Llama1、Llama2、Llama3、Qwen1、Qwen1.5、Qwen2 和 Mistral，稳定可用的。<br>
 
+### Post-Training with Direct Preference Optimization
+地址：coming soon...<br>
+代码在16台A100、A800和H100机器上训练过，DPO偏好数据最多到50万条，稳定可用。
+
 
 ## 预训练数据清洗源代码和高并发框架
 大规模预训练数据集质量清洗，具有可读性好、高可用性，Python多线程高并发，包括一套清洗工程规范，清洗策略，多线程框架，文本去重代码，黑名单词典等内容。<br>
