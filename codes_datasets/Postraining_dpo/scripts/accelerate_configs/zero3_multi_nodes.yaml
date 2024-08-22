@@ -1,7 +1,7 @@
 compute_environment: LOCAL_MACHINE
 debug: false
 deepspeed_config:
-  deepspeed_hostfile: /mnt/lptest/xubu/postrain/scripts/hostfile4
+  deepspeed_hostfile: /XXXX/scripts/hostfile4
   deepspeed_multinode_launcher: pdsh
   gradient_accumulation_steps: 2
   offload_optimizer_device: none
@@ -12,7 +12,7 @@ deepspeed_config:
 distributed_type: DEEPSPEED
 downcast_bf16: 'no'
 machine_rank: 0
-main_process_ip: 10.208.110.235
+main_process_ip: 15.108.121.45
 main_process_port: 50528
 main_training_function: main
 mixed_precision: bf16
