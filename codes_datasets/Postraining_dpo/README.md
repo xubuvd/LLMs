@@ -1,4 +1,9 @@
 
+# See pip. conda envs at ./requirements/
+```
+conda_dpo_requirements.txt
+pip_dpo_requirements.txt
+```
 # step1: Post-Training with Direct Preference Optimization
 ```
 bash scripts/postrain_with_dpo.sh
