@@ -34,8 +34,8 @@ bash stopall.sh
 代码整理中，等待开源...<br>
 
 ## 中文大语言模型的安全对齐工作，用于安全审核评估
-一千条安全类指令数据集:SFT_data_recipe/cn-Safety-Prompts-gpt12k_baichuan1K.jsonl<br>
-一千条安全类中文指令数据集,关于诈骗、欺骗、个人安全、个人攻击性歧视性仇恨言论、黄赌毒等类型:cn-Chinese-harmlessness-1K.jsonl；<br>
+一千条安全类指令数据集:codes_datasets/SFTData/cn-Safety-Prompts-gpt12k_baichuan1K.jsonl<br>
+一千条安全类中文指令数据集,关于诈骗、欺骗、个人安全、个人攻击性歧视性仇恨言论、黄赌毒等类型: codes_datasets/SFTData/cn-Chinese-harmlessness-1K.jsonl<br>
 
 ## 开源sft数据集构造
 ### 1. 大规模COT高中试题数据集，命名为“cn-sft-exams-highSchool-1M.jsonl”
@@ -50,7 +50,7 @@ bash stopall.sh
 <br>
 优化后：<br>
 ![sftExp8 3_tsne_100000](https://github.com/user-attachments/assets/5a0fe60a-a8ea-48a5-ba04-7945ea7995a7)
-上述数据分布图生成代码：./utils/tsne_cluster_show.py<br>
+上述数据分布图生成代码：codes_datasets/utils/tsne_cluster_show.py<br>
 
 ### 2. 行政职业能力测验题数据集，命名为“cn-sft-CS-APAT-30K.jsonl”
 共 3 万条行测试题，逻辑推理题目，旨在提升模型的逻辑能力。<br>
