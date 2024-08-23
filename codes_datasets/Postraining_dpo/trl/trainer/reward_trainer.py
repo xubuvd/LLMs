@@ -13,11 +13,15 @@
 # limitations under the License.
 import inspect
 import warnings
+from collections import defaultdict
 from dataclasses import FrozenInstanceError, replace
+from functools import wraps
 from typing import Any, Callable, Dict, List, Optional, Tuple, Union
 
+import pandas as pd
 import torch
 import torch.nn as nn
+from accelerate.utils import gather_object
 from datasets import Dataset
 from transformers import DataCollator, PreTrainedModel, PreTrainedTokenizerBase, Trainer, TrainingArguments
 from transformers.trainer_callback import TrainerCallback
@@ -25,8 +29,8 @@ from transformers.trainer_pt_utils import nested_detach
 from transformers.trainer_utils import EvalPrediction
 
 from ..import_utils import is_peft_available
-from .training_configs import RewardConfig
-from .utils import PeftSavingCallback, RewardDataCollatorWithPadding, compute_accuracy
+from .reward_config import RewardConfig
+from .utils import RewardDataCollatorWithPadding, compute_accuracy, print_rich_table, trl_sanitze_kwargs_for_tagging
 
 
 if is_peft_available():
@@ -53,9 +57,11 @@ class RewardTrainer(Trainer):
     If you don't pass a margin, no margin will be used.
     """
 
+    _tag_names = ["trl", "reward-trainer"]
+
     def __init__(
         self,
-        model: Union[PreTrainedModel, nn.Module] = None,
+        model: Optional[Union[PreTrainedModel, nn.Module]] = None,
         args: Optional[RewardConfig] = None,
         data_collator: Optional[DataCollator] = None,
         train_dataset: Optional[Dataset] = None,
@@ -99,6 +105,8 @@ class RewardTrainer(Trainer):
                 The optimizer and scheduler to use for training.
             preprocess_logits_for_metrics (`Callable[[torch.Tensor, torch.Tensor], torch.Tensor]`):
                 The function to use to preprocess the logits before computing the metrics.
+            max_length (`int`, defaults to `None`):
+                The maximum length of the sequences in the batch. This argument is required if you want to use the default data collator.
             peft_config (`Dict`, defaults to `None`):
                 The PEFT configuration to use for training. If you pass a PEFT configuration, the model will be wrapped in a PEFT model.
         """
@@ -133,7 +141,7 @@ class RewardTrainer(Trainer):
                         inspect.signature(prepare_model_for_kbit_training).parameters
                     )
 
-                    preprare_model_kwargs = {"use_gradient_checkpointing": args.gradient_checkpointing}
+                    prepare_model_kwargs = {"use_gradient_checkpointing": args.gradient_checkpointing}
 
                     if not _supports_gc_kwargs and args.gradient_checkpointing_kwargs is not None:
                         warnings.warn(
@@ -141,17 +149,11 @@ class RewardTrainer(Trainer):
                             "please update to the latest version of peft to use `gradient_checkpointing_kwargs`."
                         )
                     elif _supports_gc_kwargs and args.gradient_checkpointing_kwargs is not None:
-                        preprare_model_kwargs["gradient_checkpointing_kwargs"] = args.gradient_checkpointing_kwargs
+                        prepare_model_kwargs["gradient_checkpointing_kwargs"] = args.gradient_checkpointing_kwargs
 
-                    model = prepare_model_for_kbit_training(model, **preprare_model_kwargs)
+                    model = prepare_model_for_kbit_training(model, **prepare_model_kwargs)
 
                 model = get_peft_model(model, peft_config)
-
-        if is_peft_available() and isinstance(model, PeftModel):
-            if callbacks is None:
-                callbacks = [PeftSavingCallback()]
-            else:
-                callbacks += [PeftSavingCallback()]
 
         if compute_metrics is None:
             compute_metrics = compute_accuracy
@@ -198,18 +200,22 @@ class RewardTrainer(Trainer):
         else:
             self.use_reward_data_collator = False
         super().__init__(
-            model,
-            args,
-            data_collator,
-            train_dataset,
-            eval_dataset,
-            tokenizer,
-            model_init,
-            compute_metrics,
-            callbacks,
-            optimizers,
-            preprocess_logits_for_metrics,
+            model=model,
+            args=args,
+            data_collator=data_collator,
+            train_dataset=train_dataset,
+            eval_dataset=eval_dataset,
+            tokenizer=tokenizer,
+            model_init=model_init,
+            compute_metrics=compute_metrics,
+            callbacks=callbacks,
+            optimizers=optimizers,
+            preprocess_logits_for_metrics=preprocess_logits_for_metrics,
         )
+
+        # Add tags for models that have been loaded with the correct transformers version
+        if hasattr(self.model, "add_model_tags"):
+            self.model.add_model_tags(self._tag_names)
 
     def compute_loss(
         self,
@@ -226,16 +232,21 @@ class RewardTrainer(Trainer):
         rewards_chosen = model(
             input_ids=inputs["input_ids_chosen"],
             attention_mask=inputs["attention_mask_chosen"],
-        )[0]
+            return_dict=True,
+        )["logits"]
         rewards_rejected = model(
             input_ids=inputs["input_ids_rejected"],
             attention_mask=inputs["attention_mask_rejected"],
-        )[0]
+            return_dict=True,
+        )["logits"]
         # calculate loss, optionally modulate with margin
         if "margin" in inputs:
             loss = -nn.functional.logsigmoid(rewards_chosen - rewards_rejected - inputs["margin"]).mean()
         else:
             loss = -nn.functional.logsigmoid(rewards_chosen - rewards_rejected).mean()
+
+        if self.args.center_rewards_coefficient is not None:
+            loss += self.args.center_rewards_coefficient * torch.mean((rewards_chosen + rewards_rejected) ** 2)
 
         if return_outputs:
             return loss, {
@@ -275,3 +286,53 @@ class RewardTrainer(Trainer):
         labels = self._prepare_inputs(labels)
 
         return loss, logits, labels
+
+    def evaluate(self, *args, **kwargs):
+        num_print_samples = kwargs.pop("num_print_samples", 4)
+        self.visualize_samples(num_print_samples)
+        return super().evaluate(*args, **kwargs)
+
+    def visualize_samples(self, num_print_samples: int):
+        """
+        Visualize the reward model logits prediction
+
+        Args:
+            num_print_samples (`int`, defaults to `4`):
+                The number of samples to print. Set to `-1` to print all samples.
+        """
+        eval_dataloader = self.get_eval_dataloader()
+        table = defaultdict(list)
+        for _, inputs in enumerate(eval_dataloader):
+            _, logits, _ = self.prediction_step(self.model, inputs, prediction_loss_only=False)
+            chosen_text = self.tokenizer.batch_decode(inputs["input_ids_chosen"], skip_special_tokens=True)
+            rejected_text = self.tokenizer.batch_decode(inputs["input_ids_rejected"], skip_special_tokens=True)
+            table["chosen_text"].extend(gather_object(chosen_text))
+            table["rejected_text"].extend(gather_object(rejected_text))
+            table["logits"].extend(
+                gather_object([[round(inner_item, 4) for inner_item in item] for item in logits.tolist()])
+            )
+            if num_print_samples >= 0 and len(table["chosen_text"]) >= num_print_samples:
+                break
+        df = pd.DataFrame(table)
+        if self.accelerator.process_index == 0:
+            print_rich_table(df[:num_print_samples])
+            if "wandb" in self.args.report_to:
+                import wandb
+
+                if wandb.run is not None:
+                    wandb.log({"completions": wandb.Table(dataframe=df)})
+
+    @wraps(Trainer.push_to_hub)
+    def push_to_hub(
+        self,
+        commit_message: Optional[str] = "End of training",
+        blocking: bool = True,
+        **kwargs,
+    ) -> str:
+        """
+        Overwrite the `push_to_hub` method in order to force-add the tag "reward-trainer" when pushing the
+        model on the Hub. Please refer to `~transformers.Trainer.push_to_hub` for more details.
+        Unlike the parent class, we don't use the `token` argument to mitigate security risks.
+        """
+        kwargs = trl_sanitze_kwargs_for_tagging(model=self.model, tag_names=self._tag_names, kwargs=kwargs)
+        return super().push_to_hub(commit_message=commit_message, blocking=blocking, **kwargs)

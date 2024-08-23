@@ -1,20 +1,23 @@
 compute_environment: LOCAL_MACHINE
 debug: false
 deepspeed_config:
-  deepspeed_multinode_launcher: standard
-  gradient_accumulation_steps: 1
+  deepspeed_hostfile: /mnt/lptest/xubu/postrain/scripts/hostfile4
+  deepspeed_multinode_launcher: pdsh
+  gradient_accumulation_steps: 2
   offload_optimizer_device: none
   offload_param_device: none
   zero3_init_flag: true
   zero3_save_16bit_model: true
   zero_stage: 3
 distributed_type: DEEPSPEED
+main_process_ip: 15.108.121.45
+main_process_port: 5158
 downcast_bf16: 'no'
 machine_rank: 0
 main_training_function: main
-mixed_precision: 'bf16'
-num_machines: 1
-num_processes: 8
+mixed_precision: bf16
+num_machines: 4
+num_processes: 32
 rdzv_backend: static
 same_network: true
 tpu_env: []

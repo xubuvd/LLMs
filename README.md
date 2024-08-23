@@ -9,8 +9,8 @@
 
 ### 偏好训练 Post-Training with Direct Preference Optimization
 ```
-地址：codes_datasets/Postraining_dpo<br>
-用法参考：codes_datasets/Postraining_dpo/README.md<br>
+地址：codes_datasets/Postraining_dpo
+用法参考：codes_datasets/Postraining_dpo/README.md
 ```
 代码在16台A100、A800和H100机器上训练过，DPO偏好数据最多到50万条，稳定可用。
 

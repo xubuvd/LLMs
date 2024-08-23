@@ -15,45 +15,81 @@ import gc
 import random
 import warnings
 from contextlib import contextmanager
-from typing import List, Optional, Tuple, Union
+from typing import Dict, List, Optional, Tuple, Union
 
 import numpy as np
 import torch
+import torch.nn as nn
 import torch.nn.functional as F
 from torch.nn.utils.rnn import pad_sequence
-from transformers import top_k_top_p_filtering
-#from transformers.generation.utils import top_k_top_p_filtering
+from transformers.generation import TopKLogitsWarper, TopPLogitsWarper
 
-from .import_utils import is_xpu_available
+from .import_utils import is_npu_available, is_xpu_available
 
 
 try:
     from collections.abc import Mapping
 except ImportError:
-    from collections import Mapping
+    from collections.abc import Mapping
 
 
 WANDB_PADDING = -1
 
 
-def flatten_dict(nested, sep="/"):
+def top_k_top_p_filtering(
+    logits: torch.FloatTensor,
+    top_k: int = 0,
+    top_p: float = 1.0,
+    filter_value: float = -float("Inf"),
+    min_tokens_to_keep: int = 1,
+) -> torch.FloatTensor:
+    """
+    Filter a distribution of logits using top-k and/or nucleus (top-p) filtering.
+
+    Args:
+        logits: logits distribution shape (batch size, vocabulary size)
+        top_k (`int`, *optional*, defaults to 0):
+            If > 0, only keep the top k tokens with highest probability (top-k filtering)
+        top_p (`float`, *optional*, defaults to 1.0):
+            If < 1.0, only keep the top tokens with cumulative probability >= top_p (nucleus filtering). Nucleus
+            filtering is described in Holtzman et al. (https://huggingface.co/papers/1904.09751)
+        min_tokens_to_keep (`int`, *optional*, defaults to 1):
+            Minimumber of tokens we keep per batch example in the output.
+
+    From: https://gist.github.com/thomwolf/1a5a29f6962089e871b94cbd09daf317
+    """
+
+    if top_k > 0:
+        logits = TopKLogitsWarper(top_k=top_k, filter_value=filter_value, min_tokens_to_keep=min_tokens_to_keep)(
+            None, logits
+        )
+
+    if 0 <= top_p <= 1.0:
+        logits = TopPLogitsWarper(top_p=top_p, filter_value=filter_value, min_tokens_to_keep=min_tokens_to_keep)(
+            None, logits
+        )
+
+    return logits
+
+
+def flatten_dict(nested: Dict, sep: str = "/") -> Dict:
     """Flatten dictionary and concatenate nested keys with separator."""
 
-    def rec(nest, prefix, into):
+    def recurse(nest: Dict, prefix: str, into: Dict) -> None:
         for k, v in nest.items():
             if sep in k:
                 raise ValueError(f"separator '{sep}' not allowed to be in key '{k}'")
             if isinstance(v, Mapping):
-                rec(v, prefix + k + sep, into)
+                recurse(v, prefix + k + sep, into)
             else:
                 into[prefix + k] = v
 
     flat = {}
-    rec(nested, "", flat)
+    recurse(nested, "", flat)
     return flat
 
 
-def convert_to_scalar(stats):
+def convert_to_scalar(stats: Dict) -> Dict:
     """
     Converts the stats from a flattened dict to single scalar dicts
     """
@@ -69,7 +105,7 @@ def convert_to_scalar(stats):
     return tensorboard_stats
 
 
-def stack_dicts(stats_dicts):
+def stack_dicts(stats_dicts: List[Dict]) -> Dict:
     """Stack the values of a dict."""
     results = dict()
     for k in stats_dicts[0]:
@@ -78,12 +114,12 @@ def stack_dicts(stats_dicts):
     return results
 
 
-def add_suffix(input_dict, suffix):
+def add_suffix(input_dict: Dict, suffix: str) -> Dict:
     """Add suffix to dict keys."""
-    return dict((k + suffix, v) for k, v in input_dict.items())
+    return {k + suffix: v for k, v in input_dict.items()}
 
 
-def pad_to_size(tensor, size, dim=1, padding=50256):
+def pad_to_size(tensor: torch.Tensor, size: int, dim: int = 1, padding: int = 50256) -> torch.Tensor:
     """Pad tensor to size."""
     t_size = tensor.size()[dim]
     if t_size == size:
@@ -92,7 +128,7 @@ def pad_to_size(tensor, size, dim=1, padding=50256):
         return torch.nn.functional.pad(tensor, (0, size - t_size), "constant", padding)
 
 
-def logprobs_from_logits(logits, labels, gather=True):
+def logprobs_from_logits(logits: torch.Tensor, labels: torch.Tensor, gather: bool = True) -> torch.Tensor:
     """
     See: https://github.com/pytorch/pytorch/issues/563#issuecomment-330103591
     """
@@ -104,7 +140,7 @@ def logprobs_from_logits(logits, labels, gather=True):
     return logpy
 
 
-def whiten(values, shift_mean=True):
+def whiten(values: torch.Tensor, shift_mean: bool = True) -> torch.Tensor:
     """Whiten values."""
     mean, var = torch.mean(values), torch.var(values)
     whitened = (values - mean) * torch.rsqrt(var + 1e-8)
@@ -113,7 +149,7 @@ def whiten(values, shift_mean=True):
     return whitened
 
 
-def masked_mean(values, mask, axis=None):
+def masked_mean(values: torch.Tensor, mask: torch.Tensor, axis: Optional[bool] = None) -> torch.Tensor:
     """Compute mean of tensor with a masked values."""
     if axis is not None:
         return (values * mask).sum(axis=axis) / mask.sum(axis=axis)
@@ -121,7 +157,7 @@ def masked_mean(values, mask, axis=None):
         return (values * mask).sum() / mask.sum()
 
 
-def masked_var(values, mask, unbiased=True):
+def masked_var(values: torch.Tensor, mask: torch.Tensor, unbiased: bool = True) -> torch.Tensor:
     """Compute variance of tensor with masked values."""
     mean = masked_mean(values, mask)
     centered_values = values - mean
@@ -140,7 +176,7 @@ def masked_var(values, mask, unbiased=True):
     return variance
 
 
-def masked_whiten(values, mask, shift_mean=True):
+def masked_whiten(values: torch.Tensor, mask: torch.Tensor, shift_mean: bool = True) -> torch.Tensor:
     """Whiten values with masked values."""
     mean, var = masked_mean(values, mask), masked_var(values, mask)
     whitened = (values - mean) * torch.rsqrt(var + 1e-8)
@@ -149,23 +185,23 @@ def masked_whiten(values, mask, shift_mean=True):
     return whitened
 
 
-def clip_by_value(x, tensor_min, tensor_max):
+def clip_by_value(x: torch.Tensor, tensor_min: float, tensor_max: float) -> torch.Tensor:
     """
-    Tensor extenstion to torch.clamp
+    Tensor extension to torch.clamp
     https://github.com/pytorch/pytorch/issues/2793#issuecomment-428784713
     """
     clipped = torch.max(torch.min(x, tensor_max), tensor_min)
     return clipped
 
 
-def entropy_from_logits(logits):
+def entropy_from_logits(logits: torch.Tensor) -> torch.Tensor:
     """Calculate entropy from logits."""
     pd = torch.nn.functional.softmax(logits, dim=-1)
     entropy = torch.logsumexp(logits, axis=-1) - torch.sum(pd * logits, axis=-1)
     return entropy
 
 
-def average_torch_dicts(list_of_dicts):
+def average_torch_dicts(list_of_dicts: List[Dict]) -> Dict:
     """Average values of a list of dicts with torch tensors."""
     average_dict = dict()
     for key in list_of_dicts[0].keys():
@@ -173,7 +209,7 @@ def average_torch_dicts(list_of_dicts):
     return average_dict
 
 
-def stats_to_np(stats_dict):
+def stats_to_np(stats_dict: Dict) -> Dict:
     """Cast all torch.tensors in dict to numpy arrays."""
     new_dict = dict()
     for k, v in stats_dict.items():
@@ -189,40 +225,12 @@ def stats_to_np(stats_dict):
     return new_dict
 
 
-def listify_batch(tensor):
-    """Turns the first dimension of a tensor into a list."""
-    return [tensor[i] for i in range(tensor.shape[0])]
-
-
-def build_bert_batch_from_txt(text_list, tokenizer, device):
-    """Create token id and attention mask tensors from text list for BERT classification."""
-
-    # tokenize
-    tensors = [tokenizer.encode(txt, return_tensors="pt").to(device) for txt in text_list]
-
-    # find max length to pad to
-    max_len = max([t.size()[1] for t in tensors])
-
-    # get padded tensors and attention masks
-    # (attention masks make bert ignore padding)
-    padded_tensors = []
-    attention_masks = []
-    for tensor in tensors:
-        attention_mask = torch.ones(tensor.size(), device=device)
-        padded_tensors.append(pad_to_size(tensor, max_len, padding=0))
-        attention_masks.append(pad_to_size(attention_mask, max_len, padding=0))
-
-    # stack all tensors
-    padded_tensors = torch.cat(padded_tensors)
-    attention_masks = torch.cat(attention_masks)
-
-    return padded_tensors, attention_masks
-
-
-def respond_to_batch(model, queries, txt_len=20, top_k=0, top_p=1.0):
+def respond_to_batch(
+    model: nn.Module, queries: List[torch.LongTensor], txt_len: int = 20, top_k: int = 0, top_p: float = 1.0
+) -> torch.LongTensor:
     """Sample text from language model."""
     input_ids = queries
-    for i in range(txt_len):
+    for _i in range(txt_len):
         # Get Logits
         outputs = model(input_ids)
         next_token_logits = outputs[0][:, -1, :]
@@ -234,7 +242,7 @@ def respond_to_batch(model, queries, txt_len=20, top_k=0, top_p=1.0):
     return input_ids[:, -txt_len:]
 
 
-def set_seed(seed: int):
+def set_seed(seed: int) -> None:
     """
     Helper function for reproducible behavior to set the seed in `random`, `numpy`, and `torch`.
 
@@ -246,6 +254,8 @@ def set_seed(seed: int):
     torch.manual_seed(seed)
     if is_xpu_available():
         torch.xpu.manual_seed_all(seed)
+    elif is_npu_available():
+        torch.npu.manual_seed_all(seed)
     else:
         torch.cuda.manual_seed_all(seed)
 
@@ -255,27 +265,30 @@ class LengthSampler:
     Samples a length
     """
 
-    def __init__(self, min_value, max_value):
+    def __init__(self, min_value: int, max_value: int):
         self.values = list(range(min_value, max_value))
 
-    def __call__(self):
+    def __call__(self) -> int:
         return np.random.choice(self.values)
 
 
-class PPODecorators(object):
+class PPODecorators:
     optimize_device_cache = False
 
     @classmethod
     @contextmanager
     def empty_device_cache(cls):
         yield
-        if is_xpu_available():
-            if cls.optimize_device_cache and torch.xpu.is_available():
+        if cls.optimize_device_cache:
+            if is_xpu_available():
                 gc.collect()
                 torch.xpu.empty_cache()
                 gc.collect()
-        else:
-            if cls.optimize_device_cache and torch.cuda.is_available():
+            elif is_npu_available():
+                gc.collect()
+                torch.npu.empty_cache()
+                gc.collect()
+            elif torch.cuda.is_available():
                 gc.collect()
                 torch.cuda.empty_cache()
                 gc.collect()
@@ -283,11 +296,11 @@ class PPODecorators(object):
 
 def randn_tensor(
     shape: Union[Tuple, List],
-    generator: Optional[Union[List["torch.Generator"], "torch.Generator"]] = None,
-    device: Optional["torch.device"] = None,
-    dtype: Optional["torch.dtype"] = None,
-    layout: Optional["torch.layout"] = None,
-):
+    generator: Optional[Union[List[torch.Generator], torch.Generator]] = None,
+    device: Optional[torch.device] = None,
+    dtype: Optional[torch.dtype] = None,
+    layout: Optional[torch.layout] = None,
+) -> torch.Tensor:
     """A helper function to create random tensors on the desired `device` with the desired `dtype`. When
     passing a list of generators, you can seed each batch size individually. If CPU generators are passed, the tensor
     is always created on the CPU.

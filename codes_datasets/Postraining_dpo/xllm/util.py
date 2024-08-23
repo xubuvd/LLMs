@@ -10,6 +10,8 @@ from typing import Dict, Optional
 from datasets import Dataset
 from transformers import set_seed
 from dataclasses import dataclass, field
+from data_decrypt import get_binary_content_from_file,extract_json_objects
+from request_http import get_pd_token
 
 @dataclass
 class ModelArguments:
@@ -31,12 +33,15 @@ class DataArguments:
     test_dataset_path: str = field(
         default=None, metadata={"help": "Path to the evaluation data."}
     )
-    sanity_check: Optional[bool] = field(default=True, metadata={"help": "only train on 1000 samples"})
+    #sanity_check: Optional[bool] = field(default=True, metadata={"help": "only train on 1000 samples"})
     
     data_suffix : str = field(
         default=None, metadata={"help": "Path to the trained file to be loaded"}
     )
     
+    pd_token: str = field(
+        default=None, metadata={"help": "required token"}
+    )
     model_architecture_type: str = field(
         default=None, metadata={"help": "required token: LLama3, LLama2, Qwen"}
     )
@@ -66,18 +71,17 @@ class TrainingArguments(transformers.TrainingArguments):
 @dataclass
 class xllmArguments:
     enable_flash_attn: bool = field(default=True)
-    tie_word_embeddings: bool = field(default=False)
+    #tie_word_embeddings: bool = field(default=False)
 
     only_train_embedding: Optional[bool] = field(default=False)
     only_debug_dataload: Optional[bool] = field(default=False)
     
-    max_length: Optional[int] = field(default=2048, metadata={"help": "max length of each sample"})
-    max_prompt_length: Optional[int] = field(default=1024, metadata={"help": "max length of each sample's prompt"})
-    max_target_length: Optional[int] = field(
-        default=128, metadata={"help": "Only used for encoder decoder model. Max target of each sample's prompt"}
-    )
-    
-    beta: Optional[float] = field(default=0.1, metadata={"help": "the beta parameter for DPO loss"})
+    #max_length: Optional[int] = field(default=2048, metadata={"help": "max length of each sample"})
+    #max_prompt_length: Optional[int] = field(default=1024, metadata={"help": "max length of each sample's prompt"})
+    #max_target_length: Optional[int] = field(
+    #    default=128, metadata={"help": "Only used for encoder decoder model. Max target of each sample's prompt"}
+    #)
+    #beta: Optional[float] = field(default=0.1, metadata={"help": "the beta parameter for DPO loss"})
 
 
 def extract_prompt(prompt_and_response):
@@ -87,9 +91,15 @@ def extract_prompt(prompt_and_response):
     
     return prompt_and_response[: search_term_idx + len(search_term)]
 
-def read_jsonl_lst(input_file_lst,chunksize=64*1024):
+def read_jsonl_lst(input_file_lst,pd_key,chunksize=64*1024):
     jsonl_list = []
     for indx,input_file in tqdm(enumerate(input_file_lst),total=len(input_file_lst)):
+        #bchunk_per_file = get_binary_content_from_file(input_file,pd_key,chunksize)
+        #schunk_per_file = bchunk_per_file.decode("utf-8","ignore")
+        #print(f"extracting json string from {input_file} ...")
+        #objects_list = extract_json_objects(schunk_per_file)
+        #print("loading {} json objects from {}".format(len(objects_list),input_file))
+        #jsonl_list.extend(objects_list)
         objects_list = []
         with open(input_file, 'r',encoding='utf-8') as fin:
             for idx, line in enumerate(tqdm(fin)):
@@ -108,6 +118,7 @@ def get_dataset(
         silent: bool = False, 
         cache_dir: str = None,
         data_suffix: str = None,
+        pd_key: str = None,
         model_type: str = None,
         max_sample: str = None) -> Dataset:
 
@@ -119,9 +130,10 @@ def get_dataset(
     else:
         print(f"Invalid-format: {input_file}")
         return None
-    jsonl_list = read_jsonl_lst(input_file_lst)
+    jsonl_list = read_jsonl_lst(input_file_lst,pd_key)
     if sanity_check: jsonl_list = jsonl_list[0:min(len(jsonl_list), 1000)]
 
+    #random.shuffle(jsonl_list)
     if max_sample is None: max_sample = len(jsonl_list)
     random.seed(3517)
     jsonl_list = list(random.sample(jsonl_list, max_sample))
@@ -132,9 +144,10 @@ def get_dataset(
         "rejected":[],
     }
     for idx, js_dict in tqdm(enumerate(jsonl_list),total=len(jsonl_list)):
+        #prompt = extract_prompt(js_dict["chosen"])
         prompt = js_dict["prompt"]
-        chosen = js_dict["chosen"]
-        rejected = js_dict["rejected"]
+        chosen = js_dict["chosen"]#[len(prompt) :]
+        rejected = js_dict["rejected"]#[len(prompt) :]
 
         dpo_dataset_dict["prompt"].append(prompt)
         dpo_dataset_dict["chosen"].append(chosen)

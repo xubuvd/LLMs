@@ -10,13 +10,14 @@ tie_embed="False"
 datestr=`date +"%Y-%m-%d"`
 wandb_run_name="dpo-sftExp8.3-Qwen1.5-14B-cp1006-$datestr"
 
-output_path=/mnt/sftExp8.3-Qwen1.5-14B-checkpoint-1006-post
-ckpt_path=/mnt/sftExp8.3-Qwen1.5-14B/sftExp8.3-Qwen1.5-14B-checkpoint-1006
+output_path=/mnt/lptest/sftExp8.3-Qwen1.5-14B-checkpoint-1006-post
+ckpt_path=/mnt/lptest/sftExp8.3-Qwen1.5-14B/sftExp8.3-Qwen1.5-14B-checkpoint-1006
 model_type="Qwen"
 
+pd_token="3xxxx"
 data_suffix="*.jsonl"
-train_data_path=/mnt/xubu/dpo_dataGen/dpo_preference_data/train
-dev_data_path=/mnt/xubu/dpo_dataGen/dpo_preference_data/dev
+train_data_path=/mnt/lptest/xubu/dpo_dataGen/dpo_preference_data/train
+dev_data_path=/mnt/lptest/xubu/dpo_dataGen/dpo_preference_data/dev
 
 num_processes=32
 beta=0.1
@@ -24,8 +25,8 @@ bs_per_dev=2
 grad_acc_steps=2
 
 # save model per 500 global_step (2B token, 3h)
-ckpt_steps=283
-eval_steps=283
+ckpt_steps=281
+eval_steps=281
 
 # Direct Preference Optimization
 train_epoch=3
@@ -41,7 +42,7 @@ sanity_check=False
 
 # Run Command
 REPO=$(pwd)
-config=$REPO/scripts/accelerate_configs/${strategy}_multi_nodes.yaml
+config=$REPO/scripts/accelerate_configs/deepspeed_${strategy}.yaml
 echo "config file: $config"
 
 CMD=""
@@ -52,19 +53,21 @@ CMD="$CMD accelerate launch"
 CMD="$CMD --num_processes=$num_processes --config_file=$config"
 CMD="$CMD $REPO/xllm/postrain.py"
 
-CMD="$CMD --beta $beta --model_name_or_path $ckpt_path --learning_rate $lr --model_architecture_type $model_type"
+CMD="$CMD --bf16 --beta $beta --model_name_or_path $ckpt_path --learning_rate $lr --model_architecture_type $model_type"
 CMD="$CMD --per_device_train_batch_size $bs_per_dev --gradient_accumulation_steps $grad_acc_steps"
 
 CMD="$CMD --max_length $max_length --max_prompt_length $max_prompt_length --max_target_length $max_target_length"
 CMD="$CMD --sanity_check $sanity_check --report_to 'wandb' --run_name $wandb_run_name"
 
-CMD="$CMD --ignore_bias_buffers False --logging_steps 1 --tie_word_embeddings $tie_embed --enable_flash_attn $enable_flash_attn"
+# --tie_word_embeddings $tie_embed --enable_flash_attn $enable_flash_attn
+CMD="$CMD --ignore_bias_buffers False --logging_steps 1"
+# --tie_word_embeddings $tie_embed --enable_flash_attn $enable_flash_attn
 
 CMD="$CMD --train_dataset_path $train_data_path --test_dataset_path $dev_data_path --data_suffix $data_suffix"
 
 CMD="$CMD --eval_steps $eval_steps --num_train_epochs $train_epoch --warmup_ratio $warmup_ratio"
 
-CMD="$CMD --output_dir $output_path --save_steps $ckpt_steps"
+CMD="$CMD --output_dir $output_path --save_steps $ckpt_steps --logging_first_step --no_remove_unused_columns"
 
 CMD="$CMD --gradient_checkpointing True --weight_decay 0.1 --max_grad_norm 1.0"
 

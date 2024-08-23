@@ -15,6 +15,7 @@ import torch
 import torch.nn as nn
 from transformers import AutoModelForCausalLM, AutoModelForSeq2SeqLM
 
+from ..import_utils import is_npu_available, is_xpu_available
 from .modeling_base import PreTrainedModelWrapper
 
 
@@ -85,6 +86,7 @@ class AutoModelForCausalLMWithValueHead(PreTrainedModelWrapper):
                 - **"normal"** -- Initializes the weights of the `ValueHead` with a normal distribution.
 
     """
+
     transformers_parent_class = AutoModelForCausalLM
     lm_head_namings = ["lm_head", "embed_out"]
     supported_args = (
@@ -104,7 +106,7 @@ class AutoModelForCausalLMWithValueHead(PreTrainedModelWrapper):
             kwargs (`dict`, `optional`):
                 Additional keyword arguments, that are passed to the `ValueHead` class.
         """
-        super().__init__(pretrained_model)
+        super().__init__(pretrained_model, **kwargs)
         v_head_kwargs, _, _ = self._split_kwargs(kwargs)
 
         if not any(hasattr(self.pretrained_model, attribute) for attribute in self.lm_head_namings):
@@ -142,6 +144,7 @@ class AutoModelForCausalLMWithValueHead(PreTrainedModelWrapper):
         input_ids=None,
         past_key_values=None,
         attention_mask=None,
+        return_past_key_values=False,
         **kwargs,
     ):
         r"""
@@ -157,6 +160,7 @@ class AutoModelForCausalLMWithValueHead(PreTrainedModelWrapper):
                 Mask to avoid performing attention on padding token indices. Mask values selected in ``[0, 1]``:
                 - 1 for tokens that are **not masked**,
                 - 0 for tokens that are **masked**.
+            return_past_key_values (bool): A flag indicating if the computed hidden-states should be returned.
             kwargs (`dict`, `optional`):
                 Additional keyword arguments, that are passed to the wrapped model.
         """
@@ -185,7 +189,10 @@ class AutoModelForCausalLMWithValueHead(PreTrainedModelWrapper):
         if lm_logits.dtype != torch.float32:
             lm_logits = lm_logits.float()
 
-        return (lm_logits, loss, value)
+        if return_past_key_values:
+            return (lm_logits, loss, value, base_model_output.past_key_values)
+        else:
+            return (lm_logits, loss, value)
 
     def generate(self, *args, **kwargs):
         r"""
@@ -218,7 +225,7 @@ class AutoModelForCausalLMWithValueHead(PreTrainedModelWrapper):
         return pretrained_model_state_dict
 
     def push_to_hub(self, *args, **kwargs):
-        setattr(self.pretrained_model, "v_head", self.v_head)
+        self.pretrained_model.v_head = self.v_head
 
         return self.pretrained_model.push_to_hub(*args, **kwargs)
 
@@ -244,7 +251,13 @@ class AutoModelForCausalLMWithValueHead(PreTrainedModelWrapper):
                 )
 
             first_device = list(set(self.pretrained_model.hf_device_map.values()))[0]
-
+            if isinstance(first_device, int):
+                if is_npu_available():
+                    first_device = f"npu:{first_device}"
+                elif is_xpu_available():
+                    first_device = f"xpu:{first_device}"
+                else:
+                    first_device = f"cuda:{first_device}"
             self.v_head = self.v_head.to(first_device)
 
             def set_device_hook(module, input, outputs):
@@ -276,6 +289,7 @@ class AutoModelForSeq2SeqLMWithValueHead(PreTrainedModelWrapper):
         kwargs:
             Additional keyword arguments passed along to the `ValueHead` class.
     """
+
     transformers_parent_class = AutoModelForSeq2SeqLM
     lm_head_namings = ["lm_head", "embed_out", "output_projection"]
     supported_args = (
@@ -285,7 +299,7 @@ class AutoModelForSeq2SeqLMWithValueHead(PreTrainedModelWrapper):
     )
 
     def __init__(self, pretrained_model, **kwargs):
-        super().__init__(pretrained_model)
+        super().__init__(pretrained_model, **kwargs)
         v_head_kwargs, _, _ = self._split_kwargs(kwargs)
         self.is_encoder_decoder = True
 
@@ -298,7 +312,7 @@ class AutoModelForSeq2SeqLMWithValueHead(PreTrainedModelWrapper):
 
     def _has_lm_head(self):
         # check module names of all modules inside `pretrained_model` to find the language model head
-        for name, module in self.pretrained_model.named_modules():
+        for name, _module in self.pretrained_model.named_modules():
             if any(attribute in name for attribute in self.lm_head_namings):
                 return True
         return False
@@ -374,7 +388,7 @@ class AutoModelForSeq2SeqLMWithValueHead(PreTrainedModelWrapper):
         return pretrained_model_state_dict
 
     def push_to_hub(self, *args, **kwargs):
-        setattr(self.pretrained_model, "v_head", self.v_head)
+        self.pretrained_model.v_head = self.v_head
 
         return self.pretrained_model.push_to_hub(*args, **kwargs)
 
@@ -397,6 +411,7 @@ class AutoModelForSeq2SeqLMWithValueHead(PreTrainedModelWrapper):
         input_ids=None,
         past_key_values=None,
         attention_mask=None,
+        return_past_key_values=False,
         **kwargs,
     ):
         kwargs["past_key_values"] = past_key_values
@@ -420,7 +435,10 @@ class AutoModelForSeq2SeqLMWithValueHead(PreTrainedModelWrapper):
         if lm_logits.dtype != torch.float32:
             lm_logits = lm_logits.float()
 
-        return (lm_logits, loss, value)
+        if return_past_key_values:
+            return (lm_logits, loss, value, base_model_output.past_key_values)
+        else:
+            return (lm_logits, loss, value)
 
     def generate(self, *args, **kwargs):
         r"""

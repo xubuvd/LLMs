@@ -1,6 +1,7 @@
 
 # See pip. conda envs at ./requirements/
 ```
+trl, v0.9.6
 conda_dpo_requirements.txt
 pip_dpo_requirements.txt
 ```
