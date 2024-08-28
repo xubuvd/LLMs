@@ -1,6 +1,13 @@
 # 中文领域大语言模型实操技术全栈
 
-## Scaling law for SFT & DPO
+## Scaling Law for SFT & DPO
+coming soon...
+
+## 领域LLMs的数据模型 for SFT & DPO
+coming soon...
+分享一个观点："Without a well thought-out data model, organizations will be constantly fighting short-term data engineering problems and connecting the business needs with data requirements will be extremely difficult. "如果没有一个经过深思熟虑的数据模型，组织将不断地与短期数据工程问题作斗争，将业务需求与数据需求联系起来将是极其困难的。"<br>来源网页需要付费账户，不再注明。
+
+## 领域LLMs的有效训练方案 for SFT & DPO
 coming soon...
 
 ## 预训练、SFT和DPO偏好对齐代码框架
