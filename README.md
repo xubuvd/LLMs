@@ -8,7 +8,8 @@ coming soon...
 分享一个观点："Without a well thought-out data model, organizations will be constantly fighting short-term data engineering problems and connecting the business needs with data requirements will be extremely difficult. "如果没有一个经过深思熟虑的数据模型，组织将不断地与短期数据工程问题作斗争，将业务需求与数据需求联系起来将是极其困难的。"<br>来源网页需要付费账户，不再注明。
 
 ## 领域LLMs的有效训练方案 for SFT & DPO
-coming soon...
+![模型训练pipelines](https://github.com/user-attachments/assets/930f90fd-260b-4c95-85b4-b74856d6d5b0)
+
 
 ## 预训练、SFT和DPO偏好对齐代码框架
 已经在36台A100，288块GPU卡上实际跑过预训练、增量预训练和SFT，涉及1.5T的tokens训练，等待开源...<br>
