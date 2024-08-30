@@ -5,10 +5,10 @@ coming soon...
 
 ## 领域LLMs的数据模型 for SFT & DPO
 分享一个观点："Without a well thought-out data model, organizations will be constantly fighting short-term data engineering problems and connecting the business needs with data requirements will be extremely difficult. "如果没有一个经过深思熟虑的数据模型，组织将不断地与短期数据工程问题作斗争，将业务需求与数据需求联系起来将是极其困难的。"<br>来源网页需要付费账户，不再注明。<br>
-![Uploading 数据生产pipelines.png…]()
+![whiteboard_exported_image](https://github.com/user-attachments/assets/354f5f57-be8c-4398-92b8-2a8c1b1ebf5d)
 
 ## 领域LLMs的有效训练方案 for SFT & DPO
-![模型训练pipelines](https://github.com/user-attachments/assets/930f90fd-260b-4c95-85b4-b74856d6d5b0)
+![模型训练pipelines](https://github.com/user-attachments/assets/5462ad51-d11b-437e-aa1e-bb006c32e2cd)
 
 
 ## 预训练、SFT和DPO偏好对齐代码框架
