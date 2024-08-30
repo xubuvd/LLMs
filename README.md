@@ -5,11 +5,13 @@ coming soon...
 
 ## 领域LLMs的数据模型 for SFT & DPO
 分享一个观点："Without a well thought-out data model, organizations will be constantly fighting short-term data engineering problems and connecting the business needs with data requirements will be extremely difficult. "如果没有一个经过深思熟虑的数据模型，组织将不断地与短期数据工程问题作斗争，将业务需求与数据需求联系起来将是极其困难的。"<br>来源网页需要付费账户，不再注明。<br>
+数据生产方案，是从原始数据到可训练数据的一整套流程，包括原始数据筛选（data selection）、数据清洗、数据embedding、数据质量打分、数据难度打分、数据Tag等等，利用这些特征将数据集分层，之后筛选进入SFT训练的数据集，偏好数据的种子从中选择，经过几十个模型生产数据，构造偏好关系，得到用于偏好对齐的训练数据。<br>
 ![数据生产pipelines](https://github.com/user-attachments/assets/b1d27de3-1e2d-47a7-b652-8d5119e579dd)
 
 
 
 ## 领域LLMs的有效训练方案 for SFT & DPO
+训练方案将SFT和DPO串联起来，一轮SFT后紧接着一轮DPO，往复迭代三轮，每一轮都增加新数据进来，构造更有难度的偏好数据。<br>
 ![模型训练pipelines](https://github.com/user-attachments/assets/5462ad51-d11b-437e-aa1e-bb006c32e2cd)
 
 
