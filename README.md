@@ -71,8 +71,6 @@ bash stopall.sh
 有的！<br>
 
 ## 从0到1预训练大语言模型
-预训练框架：基于 DeepSpeed + HuggFace Trainer 研发框架<br>
-模型结构： LLaMA；<br>
 
 ## 论文引用请参考
 ```
@@ -85,10 +83,6 @@ bash stopall.sh
   lastaccessed = {APR 19, 2024}
 }
 ```
-
-## sft微调训练和强化学习训练
-SFT：使用上一步的预训练框架 (弃用DeepSpeedChat，因为它不支持大规模数据训练，存在很多问题)<br>
-RLHF框架：使用优化过的 DeepSpeedChat 进行训练<br>
 
 ## DPO 偏好数据对齐
 DPO非常有效，目前在3万偏好数据集上，测试13B、70B和7B模型，效果非常显著；<br>
