@@ -1,7 +1,22 @@
 # 中文领域大语言模型实操技术全栈
 
+## 领域推理小模型
+推理模型（Reasoning Model）是新的垂直模型。在每个垂直领域，需要一个基于基座模型训练的推理模型，然后也可以基于这个推理模型作为后续其它训练的基础模型。<br>对于多数中小型企业，能在业务上落地的领域模型，考虑两点：部署成本和业务性能。3B或者7B的小模型是一个好的备选，当然要先测试一下业务性能，检查一下是否有潜力后再选择一个合适的做强化学习训练。比如，如下表是在某业务上实测的性能，精准率和召回率都在40以上，说明是有训练潜力的，可选为基础模型。<br>
+Models | 测试集1（7K条）   | 测试集2（4K条）| 每条平均耗时（秒）
+--------| :-----------:  | :-----------:| :-----------:
+Baidu3.5-ERNIE-Bot | P:57.06,R:68.54,A:72.65 | P:38.56,R:75.0,A:89.55 | 19~23秒
+Deep-Seek-R1-671B | P:58.47,R:47.13,A:71.46 | P:47.57,R:60.48,A:93.76 | 34~64秒
+Qwen2.5-72B-Instruct | P:53.0,R:78.37,A:69.93 | P:34.4,R:80.46,A:87.55 | 12~16秒
+Qwen2.5-32B-Instruct | P:61.8,R:58.14,A:74.36 | P:52.31,R:58.58,A:93.13 | 8~10秒
+Qwen2.5-14B-Instruct | P:51.56,R:65.42,A:72.87 | P:28.5,R:63.82,A:85.23 | 9~12秒
+Qwen2.5-7B-Instruct |  P:44.35,R:88.33,A:59.62 | P:19.78,R:87.06,A:73.53 | 10~13秒
+DeepSeek-R1-Distill-Qwen-7B | P:38.89,R:73.64,A:55.98 | P:12.73,R:76.85,A:63.36 | 13~14秒
+<b>Qwen2.5-3B-Instruct</b> | P:44.2,R:74.62,A:62.79 | P:21.73,R:71.49,A:81.44 | 10~13秒
+Qwen2.5-1.5B-Instruct | P:33.03,R:100.0,A:33.18 | P:7.28,R:100.0,A:7.82 | 3~4秒
+<br>指标说明：P：精准率，R：召回率，A：准确率<br>
+
 ## Scaling Law for SFT & DPO
-coming soon...
+
 
 ## 领域LLMs的数据模型 for SFT & DPO
 分享一个观点："Without a well thought-out data model, organizations will be constantly fighting short-term data engineering problems and connecting the business needs with data requirements will be extremely difficult. "如果没有一个经过深思熟虑的数据模型，组织将不断地与短期数据工程问题作斗争，将业务需求与数据需求联系起来将是极其困难的。" 来源网页需要付费账户，不再注明。<br>
